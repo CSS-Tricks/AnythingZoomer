@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Anything Zoomer | Text</title>
+
+	<link rel="stylesheet" href="demo/style.css">
+	<link rel="stylesheet" href="css/anythingzoomer.css">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.anythingzoomer.js"></script>
+	<script type="text/javascript">
+	$(function() {
+
+		// clone the small area, the css will define the dimensions
+		// default class name for the large area is "large"
+		$("#zoom").anythingZoomer({
+			clone: true
+		});
+
+	});
+	</script>
+
+</head>
+<body id="text">
+
+<div id="main-content">
+
+	<h1>AnythingZoomer</h1>
+
+	<a href="https://github.com/Mottie/AnythingZoomer" id="dl">Download</a>
+
+	<ul id="nav">
+		<li class="cal"><a href="index.html">Calendar Demo</a></li>
+		<li class="img"><a href="image.html">Image Demo</a></li>
+		<li class="txt"><a href="text.html">Text Demo</a></li>
+		<li class="dbl"><a href="double.html">Double Demo</a></li>
+		<li class="use"><a href="use.html">Usage</a></li>
+	</ul>
+
+	<h2>Text Demo</h2>
+
+	<p>Mouse over to see zoomed in version, double click to toggle between large and small versions.</p>
+
+	<p>This demo uses the "clone" option to clone the original "small" content. The new "large" content must have existing css definitions to determine it's style.</p>
+
+	<hr>
+
+	<div id="zoom" class="text">
+
+		<div class="small">
+			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+		</div>
+
+		<!-- the cloned "small" content will be added to div.large -->
+		<div class="large">This text will be replaced since the "clone" option is set to true</div>
+
+	</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+﻿/* AnythingZoomer */
+.az-wrap, .az-small, .az-large {
+	position: relative;
+}
+.az-wrap-inner {
+	display: block;
+}
+/* This wraps the large image and hides it */
+.az-zoom {
+	background: #fff;
+	border: #333 1px solid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 110px;
+	height: 110px;
+	overflow: hidden;
+	z-index: 100;
+	display: none;
+	-moz-box-shadow: inset 0px 0px 4px #000;
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
+}
+/* Class applied to az-mover when large image is windowed */
+.az-windowed {
+	overflow: hidden;
+	position: absolute;
+}
+/* Class applied to az-mover when large image is fully shown */
+.az-expanded {
+	height: auto;
+	width: auto;
+	position: static;
+	overflow: visible;
+};

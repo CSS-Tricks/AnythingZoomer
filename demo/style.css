@@ -1,0 +1,70 @@
+/* GENERAL */
+*													{ margin: 0; padding: 0; }
+html											{ overflow-y: scroll; }
+body											{ font: 14px Georgia, Serif; background: #444; }
+#main-content							{ width: 600px; margin: 20px auto; padding: 20px; background: white; -moz-border-radius: 20px; -moz-box-shadow: #222 5px 5px 5px; -webkit-border-radius: 20px; -webkit-box-shadow: #222 5px 5px 5px; position: relative; }
+pre												{ width: 580px; overflow-x: auto; overflow-y: hidden; margin: 0 0 12px 0; padding: 15px; background: #eee; border: 1px solid #ccc; }
+code											{ font: 11px Monaco, Courier, MonoSpace; }
+ul												{ margin: 0 0 12px 30px; }
+
+/* NAV */
+#nav											{ list-style: none; overflow: hidden; margin: 0 0 22px 0; }
+#nav li										{ display: inline; }
+#nav li a									{ display: block; float: left; padding: 8px; text-decoration: none; }
+#nav li a:hover,
+#calendar #nav li.cal a,
+#image #nav li.img a,
+#text #nav li.txt a,
+#use #nav li.use a,
+#double #nav li.dbl a			{ background: #444; color: white; }
+
+h1												{ font: bold 40px Helvetica, Sans-Serif; letter-spacing: -1px; margin: 0 0 12px 0; }
+h2												{ font: bold 30px Helvetica, Sans-Serif; letter-spacing: -1px; margin: 0 0 6px 0; }
+p													{ margin: 0 0 12px 0; }
+#dl												{ position: absolute; top: 15px; right: 15px; text-decoration: none; background: #222; color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; padding: 8px 14px; }
+#dl:hover									{ background: #999; }
+hr												{ margin-bottom: 20px; }
+
+/* CODE HIGHLIGHTING */
+.c-wrap										{ background: #f3a01e; color: #000; }
+.c-small									{ background: #d05d2a; color: #fff; }
+.c-large									{ background: #7c48b5; color: #fff; }
+.c-zoom										{ background: #4b8db5; color: #fff; }
+.c-commt									{ background: #9dc425; color: #6b861a; }
+.c-commt2									{ color: #6b861a; }
+span.cc										{ float: left; width: 10px; height: 12px; margin-right: 7px; }
+ul												{ list-style: none; }
+
+/* ZOOM CONTAINER */
+.zoom											{ display: block; margin: 0 auto; }
+.large										{ background: white; }
+
+/* FOR TEXT DEMO */
+.small p									{ font-size: 8px; width: 300px; }
+.small img								{ width: 225px; height: 150px; }
+.large p									{ font-size: 16px; width: 600px; }
+.large img								{ width: 500px; height: 333px; }
+
+/* CALENDAR SPECIFIC */
+caption										{ background: #1634D8; padding: 3px; color: white; font: 14px Helvetica, Sans-Serif; text-transform: uppercase; letter-spacing: 1px; }
+.calendar 								{ font-size: 14px; } /* double the small calendar font size */
+.calendar td,
+.calendar th							{ padding: 1px; border: 2px solid white; }
+.calendar td a						{ display: block; padding: 3px; background: #900; color: white; }
+#months-tables .calendar td a:hover,
+#months-tables .calendar td a[style]:hover  { background: black !important; text-decoration: none; }
+.day 											{ text-align: center }
+.past-day									{ background-color: #eee; }
+#months-tables						{ width: 100%; }
+#months-tables td					{ vertical-align: top; }
+td												{ vertical-align: top; }
+.single-month 						{ padding-right: 10px; }
+.small .calendar 					{ font-size: 7px; margin: 0 auto; }
+.small .calendar td,
+.small .calendar th				{ width: 12px; height: 12px; border: 1px solid white; padding: 0; }
+.small .calendar td a 		{ padding: 0; display: block; width: 12px; height: 12px; } 
+.small .calendar td.day 	{ background: #eee; }
+.small .calendar td.past-day				{ background: #999; }
+.small a 									{ border: 0; }
+.small #months-tables 		{ width: auto; }
+.small caption 						{ font-size: 7px; white-space: nowrap; }

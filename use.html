@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Anything Zoomer | Usage</title>
+
+	<link rel="stylesheet" href="demo/style.css">
+	<link rel="stylesheet" href="css/anythingzoomer.css">
+
+</head>
+<body id="use">
+
+<div id="main-content">
+
+	<h1>AnythingZoomer</h1>
+
+	<a href="https://github.com/Mottie/AnythingZoomer" id="dl">Download</a>
+
+	<ul id="nav">
+		<li class="cal"><a href="index.html">Calendar Demo</a></li>
+		<li class="img"><a href="image.html">Image Demo</a></li>
+		<li class="txt"><a href="text.html">Text Demo</a></li>
+		<li class="dbl"><a href="double.html">Double Demo</a></li>
+		<li class="use"><a href="use.html">Usage</a></li>
+	</ul>
+
+	<h2>Basics</h2>
+
+	<p>This is a jQuery plugin, so you'll need to load the jQuery library first, then the plugin file, then invoke the
+		new function on the area you wish to have zooming. There is a specific HTML structure and some required CSS to have all this
+		work correctly, so read on. The full list of parameters is also below.</p>
+
+	<pre><code>&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/jquery.anythingzoomer.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  $(function(){
+    $(&quot;#zoom&quot;).anythingZoomer();
+  });
+&lt;/script&gt;
+</code></pre>
+
+		<h2>The HTML</h2>
+
+		<p>The only required HTML is the wrapper and the small area. The large area is required if you don't clone the small area.</p>
+
+	<pre><code><span class="cc c-wrap"></span>&lt;div id=&quot;zoom&quot;&gt;
+<span class="cc c-small"></span>  &lt;div class=&quot;small&quot;&gt;
+<span class="cc c-small"></span>    &lt;img src=&quot;demo/rushmore_small.jpg&quot; alt=&quot;small rushmore&quot; /&gt;
+<span class="cc c-small"></span>  &lt;/div&gt;
+<span class="cc c-commt"></span>    <span class="c-commt2">&lt;-- the large content can be cloned from the small content --&gt;</span>
+<span class="cc c-large"></span>   &lt;div class=&quot;large&quot;&gt;
+<span class="cc c-large"></span>      &lt;img src=&quot;demo/rushmore.jpg&quot; alt=&quot;big rushmore&quot; /&gt;
+<span class="cc c-large"></span>   &lt;/div&gt;
+<span class="cc c-wrap"></span>&lt;/div&gt;</code></pre>
+
+		<p>There are five parts to the actual zoomable area. The idea is to allow for a good amount of flexibility in customizing each part,
+			including having the "small" area have different content than the "large" zooming area.</p>
+
+		<ul>
+			<li><span class="cc c-wrap"></span>The Wrap (#zoom) - goes around everything.</li>
+			<li><span class="cc c-small"></span>Small Area (.small) - the default viewable area, that you mouse over to zoom.</li>
+			<li><span class="cc c-large"></span>Large (.large) - the content that is viewable through the zoomer.</li>
+			<li><span class="cc c-zoom"></span>Zoom (.az-zoom) - the zooming box that follows the mouse around.</li>
+		</ul>
+
+		<p>You are not locked into these ID's though, you can override then when calling the plugin.</p>
+
+	<pre><code><span class="cc c-wrap"></span>&lt;div id=&quot;zoom&quot; class=&quot;az-wrap&quot; style=&quot;width: auto;&quot;&gt;
+<span class="cc c-small"></span>  &lt;div class=&quot;small az-small&quot;&gt;
+<span class="cc c-small"></span>    &lt;img alt=&quot;small rushmore&quot; src=&quot;demo/rushmore_small.jpg&quot;&gt;
+<span class="cc c-small"></span>  &lt;/div&gt;
+<span class="cc c-zoom" ></span>  &lt;div class=&quot;az-zoom&quot;&gt;
+<span class="cc c-large"></span>    &lt;div class=&quot;large az-large&quot;&gt;
+<span class="cc c-large"></span>      &lt;img alt=&quot;big rushmore&quot; src=&quot;demo/rushmore.jpg&quot;&gt;
+<span class="cc c-large"></span>    &lt;/div&gt;
+<span class="cc c-zoom" ></span>  &lt;/div&gt;
+<span class="cc c-wrap"></span>&lt;/div&gt;</code></pre>
+
+		<h2>The CSS</h2>
+
+		<p>The widths, heights, borders and things like that can be altered to your needs. The positioning, z-index, overflow, and top/left values should stay as it is here to function properly.</p>
+
+		<h3>Text Demo CSS Example</h3>
+
+		<pre><code>#zoom      { width: 500px; }
+.small img { width: 225px; height: 150px; }
+.large img { width: 500px; height: 333px; background: white; }</code></pre>
+
+		<h3>anythingzoomer.css</h3>
+
+		<pre><code><span class="c-commt2">/* Overall */</span>
+.az-wrap, .az-small, .az-large {
+  position: relative;
+}
+.az-wrap-inner {
+  display: block;
+}
+<span class="c-commt2">/* This wraps the large image and hides it */</span>
+.az-zoom {
+  background: #fff;
+  border: #333 1px solid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; <span class="c-commt2">/* Default zoom window size */</span>
+  height: 100px;
+  overflow: hidden;
+  z-index: 100;
+  display: none;
+}
+<span class="c-commt2">/* Class applied to az-mover when large image is windowed */</span>
+.az-windowed {
+  overflow: hidden;
+  position: absolute;
+}
+<span class="c-commt2">/* Class applied to az-mover when large image is fully shown */</span>
+.az-expanded {
+  height: auto;
+  width: auto;
+  position: static;
+  overflow: visible;
+};</code></pre>
+
+		<h2>All Params</h2>
+
+		<pre><code>$(&quot;#zoom&quot;).anythingZoomer({
+  smallArea   : 'small',    <span class="c-commt2">// class of small content area; the element with this class name must be inside of the wrapper</span>
+  largeArea   : 'large',    <span class="c-commt2">// class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically</span>
+  clone       : false,      <span class="c-commt2">// Make a clone of the small content area, use css to modify the style</span>
+  switchEvent : 'dblclick', <span class="c-commt2">// event that allows toggling between small and large elements - default is double click</span>
+  edge        : 30          <span class="c-commt2">// How far outside the wrapped edges the mouse can go; previously called "expansionSize"</span>
+});
+</code></pre>
+
+		<h2>Methods</h2>
+
+		<p>You can open the zoom window using an external link using these methods. This would be useful to highlight portions of the content in say instructions on how to use an app or name the presidents in the image demo.</p>
+
+
+<pre><code><span class="c-commt2">// TARGET X,Y COORDINATE
+// $('.zoom').anythingZoomer( x, y, [ w, h ] );
+// x, y = left and top coords to target (will be centered in the zoom window)
+// w, h = width and height of the zoom window, if not defined, it will default to the css definition
+// Example: $('.zoom').anythingZoomer( 82, 50, [200,200] );
+// 82, 50 will target George Washington; [200,200] will make the zoom window 200px x 200px in size</span>
+
+$('.zoom').anythingZoomer( 82, 50, [200,200] );
+
+<span class="c-commt2">// TARGET AN OBJECT
+// $('.zoom').anythingZoomer( 'selector', [ xOffset, yOffset ], [zoomW, zoomH] );
+// 'selector' - jQuery selector targeting the element
+// [xOffset, yOffset] - by default the zoom window will center itself on the element, if you want to move the window, change the offset values (negative values are okay)
+// [zoomW, zoomH] - width and height of the zoom window
+
+// Example: $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
+// '.day[rel=2009-08-26]' targets the table cell with day class name and rel attribute of "2009-08-26"
+// [ 0, 0 ]  has no x or y offset; this can be replaced with '' (empty string); or if only one number is included, like [-1] this sets the xOffset only
+// [200,200] will make the zoom window 200px x 200px in size</span>
+
+$('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
+</code></pre>
+
+<h3>Image Demo Example</h3>
+<pre><code>&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;82,50&quot;&gt;George Washington&lt;/a&gt;,
+&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;105,58&quot;&gt;Thomas Jefferson&lt;/a&gt;,
+&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;123,72&quot;&gt;Theodore Roosevelt&lt;/a&gt; or
+&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;148,72&quot;&gt;Abraham Lincoln&lt;/a&gt;</code></pre>
+
+<pre><code>$('.president')
+  <span class="c-commt2">// prevent the link from doing anything</span>
+  .bind('click', function(){
+    return false;
+  })
+  <span class="c-commt2">// click or mouseover the link to show the zoom window</span>
+  .bind('mouseover click', function(){
+    <span class="c-commt2">// get coordinates from rel attribute</span>
+    var loc = $(this).attr('rel');
+    if (loc && loc.indexOf(',') > 0) {
+      loc = loc.split(',');
+      <span class="c-commt2">// send the coordinates to anythingZoomer</span>
+      $('.zoom').anythingZoomer( loc[0], loc[1] );
+    }
+    return false;
+  });
+</code></pre>
+
+</div>
+
+</body>
+
+</html>
