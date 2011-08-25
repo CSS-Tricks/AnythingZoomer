@@ -1,4 +1,4 @@
-﻿## AnythingZoomer jQuery Plugin
+#AnythingZoomer jQuery Plugin
 
 * Latest [AnythingZoomer demo](http://mottie.github.com/AnythingZoomer/).
 * [Documentation](http://mottie.github.com/AnythingZoomer/use.html).
