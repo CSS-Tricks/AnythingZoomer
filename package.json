@@ -23,12 +23,14 @@
         "zooming"
     ],
     "homepage": "http://css-tricks.com/3075-anythingzoomer-jquery-plugin/",
-    "contributors": [
+    "maintainers": [
         {
             "name": "Rob G",
             "url": "https://github.com/Mottie"
         }
     ],
+    "demo" : "http://mottie.github.com/AnythingZoomer/",
+    "docs" : "http://mottie.github.com/AnythingZoomer/use.html",
     "files": [
         "css/jquery.anythingzoomer.css",
         "js/jquery.anythingzoomer.js",
