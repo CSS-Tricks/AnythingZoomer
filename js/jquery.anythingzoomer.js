@@ -224,8 +224,8 @@
 				sy = (sz ? sz[1] || sz[0] || 0 : 0) || base.last[1],
 				sx2 = sx / 2,
 				sy2 = sy / 2,
-				ex = o.edge || sx2 * 0.66, // 2/3 of zoom window
-				ey = o.edge || sy2 * 0.66;
+				ex = o.edge || (o.edge === 0 ? 0 : sx2 * 0.66), // 2/3 of zoom window
+				ey = o.edge || (o.edge === 0 ? 0 : sy2 * 0.66); // allows edge to be zero
 
 			// save new zoom size
 			base.last = [ sx, sy ];
