@@ -288,7 +288,7 @@
 		smallArea   : 'small',    // class of small content area; the element with this class name must be inside of the wrapper
 		largeArea   : 'large',    // class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically
 		clone       : false,      // Make a clone of the small content area, use css to modify the style
-		overlay     : false,      // Key to hold down ('shift', 'ctrl', 'alt' or 'meta') to activate the overlay; set to true to always be active, false to disable
+		overlay     : false,      // set to true to apply overlay class "az-overlay"; false to not apply it
 		speed       : 100,        // fade animation speed (in milliseconds)
 		switchEvent : 'dblclick', // event that allows toggling between small and large elements - default is double click
 		edge        : 30          // How far outside the wrapped edges the mouse can go; previously called "expansionSize"
