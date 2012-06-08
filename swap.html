@@ -11,30 +11,33 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script src="js/jquery.anythingzoomer.js"></script>
+	<style>
+	/* FOR IMAGE DEMO */
+	.small img { width: 225px; height: 150px; }
+	.large img { width: 500px; height: 333px; }
+
+	.small img.kyptos { width: 320px; height: 243px; }
+	.large img.kyptos { width: 800px; height: 608px; }
+	</style>
+
 	<script>
 	$(function() {
 
-		$(".zoom").anythingZoomer({
-			overlay : true
-		});
+		$(".zoom").anythingZoomer();
 
-		$('.president')
-		.bind('click', function(){
-			return false;
-		})
-		.bind('mouseover click', function(){
-			var loc = $(this).attr('rel');
-			if (loc && loc.indexOf(',') > 0) {
-				loc = loc.split(',');
-				$('.zoom').anythingZoomer( loc[0], loc[1] );
-			}
-			return false;
+		$("button").click(function(){
+			$(this).toggleClass('kyptos');
+			var img = ($(this).hasClass('kyptos')) ? 'kryptos-front' : 'rushmore';
+			$('.large').find('img').toggleClass('kyptos').attr('src', 'demo/' + img + '.jpg');
+			$('.small').find('img').toggleClass('kyptos').attr('src', 'demo/' + img + '_small.jpg');
+			// update plugin
+			$('.zoom').anythingZoomer();
 		});
 
 	});
 	</script>
 </head>
-<body id="image">
+<body id="swap">
 
 <div id="main-content">
 
@@ -53,16 +56,11 @@
 
 	<h2>Image Demo</h2>
 
-	<p>Mouse over to see zoomed in version, double click to toggle between large and small versions. A small area overlay is applied when hovered.</p>
+	<p>AnythingZoomer can update its contents dynamically. Just click the "Swap image" button to toggle between two sets of images.</p>
 
-	<p>Target 
-		<a href="#" class="president" rel="82,50">George Washington</a>,
-		<a href="#" class="president" rel="105,58">Thomas Jefferson</a>,
-		<a href="#" class="president" rel="123,72">Theodore Roosevelt</a> or
-		<a href="#" class="president" rel="148,72">Abraham Lincoln</a>
+	<p>
+		<button>Swap image</button>
 	</p>
-
-	<hr>
 
 	<div class="zoom">
 

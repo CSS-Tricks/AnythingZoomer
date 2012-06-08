@@ -1,13 +1,13 @@
 ﻿/*
-	AnythingZoomer v1.1
+	AnythingZoomer v1.2
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
 
 (function($){
 	$.anythingZoomer = function(el, options){
-		var t, o, base = this;
-		base.$wrap = $(el).addClass('az-wrap').wrapInner('<span class="az-wrap-inner"/>');
+		var n, t, o, base = this;
+		base.$wrap = $(el);
 		base.wrap = el;
 
 		// Add a reverse reference to the DOM object
@@ -16,67 +16,49 @@
 		base.init = function(){
 			base.options = o = $.extend( {}, $.anythingZoomer.defaultOptions, options );
 
+			// default class names
+			n = $.anythingZoomer.classNames;
+
 			// true when small element is showing, false when large is visible
 			base.state = true;
 
+			base.$wrap.addClass(n.wrap).wrapInner('<span class="' + n.wrapInner + '"/>');
+			base.$inner = base.$wrap.find('.' + n.wrapInner);
 			base.$small = base.$wrap.find('.' + o.smallArea);
 			base.$large = base.$wrap.find('.' + o.largeArea);
-			if (o.clone) {
-				t = base.$small.clone()
-					.removeClass(o.smallArea)
-					.addClass(o.largeArea);
-				if (base.$large.length) {
-					base.$large.html( t.html() );
-				} else {
-					base.$small.after(t);
-					base.$large = base.$wrap.find('.' + o.largeArea);
-				}
-			}
 
-			// wrap inner content with a span to get a more accurate width
-			// get height from original object since span will need "display:block" to get an accurate height, but adding that messes up the width
-			base.largeDim = [ base.$large.wrapInner('<span class="az-large-inner"/>').find('.az-large-inner').width(), base.$large.height() ];
-			base.smallDim = [ base.$small.wrapInner('<span class="az-small-inner"/>').find('.az-small-inner').width(), base.$small.height() ];
+			base.update();
 
 			// Add classes after getting size
-			base.$large.addClass('az-large').wrap('<div class="az-zoom"></div>');
-			base.$small.addClass('az-small');
-
-			base.$zoom = base.$wrap.find('.az-zoom');
-
-			base.ratio = [
-				base.smallDim[0] === 0 ? 1 : base.largeDim[0] / base.smallDim[0],
-				base.smallDim[1] === 0 ? 1 : base.largeDim[1] / base.smallDim[1]
-			];
-
-			base.$inner = base.$wrap.find('.az-wrap-inner').css({
-				width  : base.smallDim[0],
-				height : base.smallDim[1]
-			});
-
-			base.zoomDim = base.last = [ base.$zoom.width(), base.$zoom.height() ];
-			base.smallOffset = [ base.$small.offset().left - base.$inner.position().left, base.$small.offset().top ];
+			base.$large.addClass(n.large);
+			base.$small.addClass(n.small);
 
 			base.$inner
-				.bind('mouseenter.anythingZoomer', function(){
-					if (base.state){ base.$zoom.fadeIn(100); }
-				})
-				.bind('mouseleave.anythingZoomer', function(){
+				.bind('mouseenter' + n.namespace, function(){
 					if (base.state){
+						base.$zoom.stop(true,true).fadeIn(o.speed);
+						if (o.overlay) { base.$overlay.addClass(n.overlay); }
+						base.$smInner.addClass(n.hovered);
+					}
+				})
+				.bind('mouseleave' + n.namespace, function(){
+					if (base.state){
+						// delay hiding to prevent flash if user hovers over it again
+						// i.e. moving from a link to the image
 						base.timer = setTimeout(function(){
-							if (base.$zoom.is('.az-windowed')){
+							if (base.$zoom.hasClass(n.windowed)){
 								base.hideZoom();
 							}
 						}, 200);
 					}
 				})
-				.bind('mousemove.anythingZoomer', function(e){
+				.bind('mousemove' + n.namespace, function(e){
 					if (base.state){
 						clearTimeout(base.timer);
 						base.zoomAt( e.pageX - base.smallOffset[0], e.pageY - base.smallOffset[1] );
 					}
 				})
-				.bind(o.switchEvent + (o.switchEvent !== '' ? '.anythingZoomer' : ''), function(){
+				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
 					// toggle visible image
 					if (base.state){
 						base.showLarge();
@@ -87,6 +69,69 @@
 
 			base.showSmall();
 
+			base.initialized = true;
+
+		};
+
+		base.update = function(){
+
+			// make sure the large image is hidden
+			if (base.initialized) {
+				base.showSmall();
+			}
+
+			base.$smInner = (base.$small.find('.' + n.smallInner).length) ?
+				base.$small.find('.' + n.smallInner) : 
+				base.$small.wrapInner('<span class="' + n.smallInner + '"/>').find('.' + n.smallInner);
+			base.$small.find('.' + n.overly).remove();
+
+			if (o.clone) {
+				t = base.$smInner.clone()
+					.removeClass(n.smallInner)
+					.addClass(n.largeInner);
+				if (base.$large.length) {
+					// large area exists, just add content
+					base.$large.html( t.html() );
+				} else {
+					// no large area, so add it
+					t.wrap('<div class="' + o.largeArea + '">');
+					base.$small.after(t.parent());
+					// set base.$large again in case small area was cloned
+					base.$large = base.$wrap.find('.' + o.largeArea);
+				}
+			}
+
+			base.$lgInner = (base.$large.find('.' + n.largeInner).length) ?
+				base.$large.find('.' + n.largeInner) :
+				base.$large.wrapInner('<span class="' + n.largeInner + '"/>').find('.' + n.largeInner);
+
+			if (!base.$wrap.find('.' + n.zoom).length) {
+				base.$large.wrap('<div class="' + n.zoom + '"/>');
+				base.$zoom = base.$wrap.find('.' + n.zoom);
+			}
+
+			// wrap inner content with a span to get a more accurate width
+			// get height from original object since span will need "display:block" to get an accurate height, but adding that messes up the width
+			base.$zoom.show();
+			base.largeDim = [ base.$lgInner.width(), base.$large.height() ];
+			base.zoomDim = base.last = [ base.$zoom.width(), base.$zoom.height() ];
+			base.$zoom.hide();
+
+			base.smallDim = [ base.$smInner.width(), base.$small.height() ];
+			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;" />').prependTo(base.$small);
+
+			base.ratio = [
+				base.smallDim[0] === 0 ? 1 : base.largeDim[0] / base.smallDim[0],
+				base.smallDim[1] === 0 ? 1 : base.largeDim[1] / base.smallDim[1]
+			];
+
+			base.$inner.add(base.$overlay).css({
+				width  : base.smallDim[0],
+				height : base.smallDim[1]
+			});
+
+			base.smallOffset = [ base.$small.offset().left - base.$inner.position().left, base.$small.offset().top ];
+
 		};
 
 		// Show small image - Setup
@@ -95,8 +140,8 @@
 			base.$small.show();
 
 			base.$zoom
-				.removeClass('az-expanded')
-				.addClass('az-windowed az-zoom')
+				.removeClass(n.expanded)
+				.addClass(n.windowed + ' ' + n.zoom)
 				.css({
 					width  : base.zoomDim[0],
 					height : base.zoomDim[1]
@@ -115,9 +160,10 @@
 			base.$small.hide();
 
 			base.$zoom
-				.fadeIn(100)
-				.addClass('az-expanded')
-				.removeClass('az-windowed az-zoom')
+				.stop(true,true)
+				.fadeIn(o.speed)
+				.addClass(n.expanded)
+				.removeClass(n.windowed + ' ' + n.zoom)
 				.css({
 					height : 'auto',
 					width  : 'auto'
@@ -144,8 +190,9 @@
 		// base.setTarget( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
 		base.setTarget = function(tar, sec, sz){
 			var t, x = 0, y = 0;
+			clearTimeout(base.timer);
 
-			if (!base.$zoom.is('.az-windowed')){
+			if (!base.$zoom.hasClass(n.windowed)){
 				base.showSmall();
 			}
 
@@ -161,6 +208,13 @@
 			}
 
 			base.zoomAt(x, y, sz);
+
+			// add overlay
+			if (o.overlay) {
+				base.$overlay.addClass(n.overlay);
+			}
+			// hovered, but not really
+			base.$smInner.addClass(n.hovered);
 
 		};
 
@@ -181,7 +235,7 @@
 				return;
 			} else {
 				// Sometimes the mouseenter event is delayed
-				base.$zoom.fadeIn(100);
+				base.$zoom.stop(true,true).fadeIn(o.speed);
 			}
 
 			// center zoom under the cursor
@@ -202,7 +256,10 @@
 
 		base.hideZoom = function(){
 			base.last = base.zoomDim;
-			base.$zoom.fadeOut(100);
+			base.$zoom.stop(true,true).fadeOut(o.speed);
+			base.$overlay.removeClass(n.overlay);
+			base.$smInner.removeClass(n.hovered);
+			base.lastKey = null;
 		};
 
 		// Initialize zoomer
@@ -210,10 +267,29 @@
 
 	};
 
+	// class names used by anythingZoomer
+	$.anythingZoomer.classNames = {
+		namespace  : '.anythingZoomer', // event namespace
+		wrap       : 'az-wrap',
+		wrapInner  : 'az-wrap-inner',
+		large      : 'az-large',
+		largeInner : 'az-large-inner',
+		small      : 'az-small',
+		smallInner : 'az-small-inner',
+		overlay    : 'az-overlay',  // toggled class name
+		overly     : 'az-overly',   // overlay unstyled class
+		hovered    : 'az-hovered',
+		zoom       : 'az-zoom',
+		windowed   : 'az-windowed', // zoom window active
+		expanded   : 'az-expanded'  // zoom window inactive (large is showing)
+	};
+
 	$.anythingZoomer.defaultOptions = {
 		smallArea   : 'small',    // class of small content area; the element with this class name must be inside of the wrapper
 		largeArea   : 'large',    // class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically
 		clone       : false,      // Make a clone of the small content area, use css to modify the style
+		overlay     : false,      // Key to hold down ('shift', 'ctrl', 'alt' or 'meta') to activate the overlay; set to true to always be active, false to disable
+		speed       : 100,        // fade animation speed (in milliseconds)
 		switchEvent : 'dblclick', // event that allows toggling between small and large elements - default is double click
 		edge        : 30          // How far outside the wrapped edges the mouse can go; previously called "expansionSize"
 	};
@@ -222,9 +298,13 @@
 		return this.each(function(){
 			var anyZoom = $(this).data('zoomer');
 			// initialize the zoomer but prevent multiple initializations
-			if ((typeof(options)).match('object|undefined') && !anyZoom){
-				(new $.anythingZoomer(this, options));
-			} else if ( typeof options === 'string' || (!isNaN(options) && !isNaN(second)) ){
+			if ( /object|undefined/.test( typeof options ) ) {
+				if (anyZoom){
+					anyZoom.update();
+				} else {
+					(new $.anythingZoomer(this, options));
+				}
+			} else if ( anyZoom && ( typeof options === 'string' || (!isNaN(options) && !isNaN(second)) ) ){
 				anyZoom.setTarget(options, second, sx, sy);
 			}
 		});

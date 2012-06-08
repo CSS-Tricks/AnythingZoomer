@@ -32,4 +32,19 @@
 	width: auto;
 	position: static;
 	overflow: visible;
-};
+}
+
+/* overlay small area */
+.az-overlay {
+	background-color: #000;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	z-index: 10;
+}
+
+/* fade out small content when hovering
+.az-hovered > * {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+ */

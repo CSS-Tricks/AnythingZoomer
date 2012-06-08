@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="demo/style.css">
 	<link rel="stylesheet" href="css/anythingzoomer.css">
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script src="js/jquery.anythingzoomer.js"></script>
 	<script>
 	$(function() {
@@ -27,13 +27,13 @@
 			// '.selector', [xOffset, yOffset], [ zoomX, zoomY]
 			// offset can be '' (defaults to zero), or [x] defines only the x offset, or [x,y] defines both the x and y offset
 			// zoom size defaults to css size
-			$('#zoom').anythingZoomer('.day[rel=2009-08-26]', [-5], [200, 35]);
+			$('#zoom').anythingZoomer('.day[rel=2009-08-26]', [-2, 1], [200, 35]);
 			return false;
 		});
 
 		$('a.jul').bind('mouseenter click', function(){
 			// '.selector', [xOffset, yOffset], [ zoomX, zoomY]
-			$('#zoom').anythingZoomer('td.single-month:eq(0)', [-12, -21], [210, 210]);
+			$('#zoom').anythingZoomer('td.single-month:eq(0)', [-10, -20], [210, 210]);
 			return false;
 		});
 
@@ -52,6 +52,7 @@
 	<ul id="nav">
 		<li class="cal"><a href="index.html">Calendar Demo</a></li>
 		<li class="img"><a href="image.html">Image Demo</a></li>
+		<li class="swp"><a href="swap.html">Swap Demo</a></li>
 		<li class="txt"><a href="text.html">Text Demo</a></li>
 		<li class="dbl"><a href="double.html">Double Demo</a></li>
 		<li class="use"><a href="use.html">Usage</a></li>
