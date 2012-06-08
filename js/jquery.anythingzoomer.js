@@ -55,7 +55,10 @@
 				.bind('mousemove' + n.namespace, function(e){
 					if (base.state){
 						clearTimeout(base.timer);
-						base.zoomAt( e.pageX - base.smallOffset[0], e.pageY - base.smallOffset[1] );
+						// get current offsets in case page positioning has changed
+						// Double demo: expanded text demo will offset image demo zoom window
+						var off = base.$small.offset();
+						base.zoomAt( e.pageX - off.left - base.$inner.position().left, e.pageY - off.top );
 					}
 				})
 				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
@@ -111,9 +114,10 @@
 			}
 
 			// wrap inner content with a span to get a more accurate width
-			// get height from original object since span will need "display:block" to get an accurate height, but adding that messes up the width
+			// get height from either the inner content itself or the children of the inner content since span will need
+			// a "display:block" to get an accurate height, but adding that messes up the width
 			base.$zoom.show();
-			base.largeDim = [ base.$lgInner.width(), base.$large.height() ];
+			base.largeDim = [ base.$lgInner.width(), Math.max( base.$lgInner.height(), base.$lgInner.children().height() ) ];
 			base.zoomDim = base.last = [ base.$zoom.width(), base.$zoom.height() ];
 			base.$zoom.hide();
 
@@ -129,8 +133,6 @@
 				width  : base.smallDim[0],
 				height : base.smallDim[1]
 			});
-
-			base.smallOffset = [ base.$small.offset().left - base.$inner.position().left, base.$small.offset().top ];
 
 		};
 
@@ -240,7 +242,7 @@
 
 			// center zoom under the cursor
 			base.$zoom.css({
-				left   : x - sx2,
+				left   : x - sx2 + parseInt(base.$inner.css('margin-left'), 10) || 0,
 				top    : y - sy2,
 				width  : sx,
 				height : sy

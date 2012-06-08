@@ -4,6 +4,7 @@
 }
 .az-wrap-inner {
 	display: block;
+	margin: 0 auto; /* center small & large content */
 }
 /* This wraps the large image and hides it */
 .az-zoom {

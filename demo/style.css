@@ -6,6 +6,7 @@ body											{ font: 14px Georgia, Serif; background: #444; }
 pre												{ width: 96%; overflow-x: auto; overflow-y: hidden; margin: 0 0 12px 0; padding: 15px; background: #eee; border: 1px solid #ccc; }
 code											{ font: 11px Monaco, Courier, MonoSpace; }
 ul												{ margin: 0 0 12px 30px; }
+button										{ padding: 5px; }
 
 /* NAV */
 #nav											{ width: 600px; list-style: none; overflow: hidden; margin: 0 auto 22px auto; }
@@ -25,7 +26,9 @@ p													{ margin: 0 0 12px 0; text-align: center; }
 #dl												{ position: absolute; top: 15px; right: 15px; text-decoration: none; background: #222; color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; padding: 8px 14px; }
 #dl:hover									{ background: #999; }
 hr												{ margin-bottom: 20px; }
-#use p										{ text-align: left; }
+#use p,
+.large p,
+.small p									{ text-align: left; }
 
 /* CODE HIGHLIGHTING */
 .c-wrap										{ background: #f3a01e; }
