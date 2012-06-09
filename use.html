@@ -7,42 +7,54 @@
 	<title>Anything Zoomer | Usage</title>
 
 	<link rel="stylesheet" href="demo/style.css">
-	<link rel="stylesheet" href="css/anythingzoomer.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="demo/page.js"></script>
+
+	<!-- Syntax highlighting -->
+	<script src="http://mottie.github.com/tablesorter/docs/js/chili/jquery.chili-2.2.js"></script>
+	<script src="http://mottie.github.com/tablesorter/docs/js/chili/recipes.js"></script>
 </head>
 
 <body id="use">
 
 <div id="main-content">
 
-	<h1>AnythingZoomer</h1>
+	<h1 id="top">AnythingZoomer</h1>
 
 	<a href="https://github.com/Mottie/AnythingZoomer/downloads" id="dl">Download</a>
 
 	<ul id="nav">
-		<li class="cal"><a href="index.html">Calendar Demo</a></li>
-		<li class="img"><a href="image.html">Image Demo</a></li>
-		<li class="swp"><a href="swap.html">Swap Demo</a></li>
-		<li class="txt"><a href="text.html">Text Demo</a></li>
-		<li class="dbl"><a href="double.html">Double Demo</a></li>
-		<li class="use"><a href="use.html">Usage</a></li>
+		<li><a class="" href="index.html">Calendar Demo</a></li>
+		<li><a href="image.html">Image Demo</a></li>
+		<li><a href="swap.html">Swap Demo</a></li>
+		<li><a href="text.html">Text Demo</a></li>
+		<li><a href="double.html">Double Demo</a></li>
+		<li><a class="play" href="http://jsfiddle.net/Mottie/YwwGL/">Playground</a></li>
+		<li><a class="use current" href="use.html">Usage</a></li>
 	</ul>
 
-	<h2>Basics</h2>
+	<p class="sections">Sections: <a href="#basics">Basics</a> | <a href="#html">HTML</a> | <a href="#css">CSS</a> |
+		<a href="#parameters">Parameters</a> | <a href="#methods">Methods</a> | <a href="#callbacks">Callbacks</a>
+
+	<a id="to-top" href="#top">^</a>
+
+	<h2 id="basics">Basics</h2>
 
 	<p>This is a jQuery plugin, so you'll need to load the jQuery library first, then the plugin file, then invoke the
 		new function on the area you wish to have zooming. There is a specific HTML structure and some required CSS to have all this
 		work correctly, so read on. The full list of parameters is also below.</p>
 
-	<pre><code>&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+	<pre class="html">&lt;link rel="stylesheet" href="css/anythingzoomer.css"&gt;
+&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;js/jquery.anythingzoomer.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
   $(function(){
     $(&quot;#zoom&quot;).anythingZoomer();
   });
 &lt;/script&gt;
-</code></pre>
+</pre>
 
-		<h2>The HTML</h2>
+		<h2 id="html">The HTML</h2>
 
 		<p>The only required HTML is the wrapper and the small area. The large area is required if you don't clone the small area.</p>
 
@@ -88,93 +100,108 @@
 <span class="cc c-wrap"></span>  &lt;/span&gt;
 <span class="cc c-wrap"></span>&lt;/div&gt;</code></pre>
 
-		<h2>The CSS</h2>
+		<h2 id="css">The CSS</h2>
 
 		<p>The widths, heights, borders and things like that can be altered to your needs. The positioning, z-index, overflow, and top/left values should stay as it is here to function properly.</p>
 
 		<h3>Text Demo CSS Example</h3>
 
-		<pre><code>#zoom      { width: 500px; }
+		<pre class="css">#zoom      { width: 500px; }
 .small img { width: 225px; height: 150px; }
-.large img { width: 500px; height: 333px; background: white; }</code></pre>
+.large img { width: 500px; height: 333px; background: white; }</pre>
 
 		<h3>anythingzoomer.css</h3>
 
-		<pre><code><span class="c-commt2">/* Overall */</span>
+		<pre class="css">/* AnythingZoomer */
 .az-wrap, .az-small, .az-large {
   position: relative;
 }
 .az-wrap-inner {
-  display: block;
+	display: block;
+	margin: 0 auto; /* center small & large content */
 }
-<span class="c-commt2">/* This wraps the large image and hides it */</span>
+/* This wraps the large image and hides it */
 .az-zoom {
-  background: #fff;
-  border: #333 1px solid;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px; <span class="c-commt2">/* Default zoom window size */</span>
-  height: 100px;
-  overflow: hidden;
-  z-index: 100;
-  display: none;
+	background: #fff;
+	border: #333 1px solid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 110px;
+	height: 110px;
+	overflow: hidden;
+	z-index: 100;
+	display: none;
+	-moz-box-shadow: inset 0px 0px 4px #000;
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
 }
-<span class="c-commt2">/* Class applied to az-mover when large image is windowed */</span>
+/* Class applied to az-mover when large image is windowed */
 .az-windowed {
-  overflow: hidden;
-  position: absolute;
+	overflow: hidden;
+	position: absolute;
 }
-<span class="c-commt2">/* Class applied to az-mover when large image is fully shown */</span>
+/* Class applied to az-mover when large image is fully shown */
 .az-expanded {
-  height: auto;
-  width: auto;
-  position: static;
-  overflow: visible;
-};
+	height: auto;
+	width: auto;
+	position: static;
+	overflow: visible;
+}
 
-<span class="c-commt2">/* Dark overlay */</span>
+/* overlay small area */
 .az-overlay {
-  background-color: #000;
-  opacity: 0.3;
-  filter: alpha(opacity=30);
+	background-color: #000;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	z-index: 10;
 }
 
-<span class="c-commt2">/* fade out content on overlay 
+/* fade out small content when hovering
 .az-hovered > * {
-  opacity: 0.3;
-  filter: alpha(opacity=30);
+	opacity: 0.5;
+	filter: alpha(opacity=50);
 }
-*/</span></code></pre>
+*/</pre>
 
-		<h2>All Params</h2>
+		<h2 id="parameters">All Parameters</h2>
 
-		<pre><code>$(&quot;#zoom&quot;).anythingZoomer({
-  smallArea   : 'small',    <span class="c-commt2">// class of small content area; the element with this class name must be inside of the wrapper</span>
-  largeArea   : 'large',    <span class="c-commt2">// class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically</span>
-  clone       : false,      <span class="c-commt2">// Make a clone of the small content area, use css to modify the style</span>
-  overlay     : false,      <span class="c-commt2">// Key to hold down ('shift', 'ctrl', 'alt' or 'meta') to activate the overlay; set to true to always be active, false to disable</span>
-  speed       : 100,        <span class="c-commt2">// fade animation speed (in milliseconds)</span>
-  switchEvent : 'dblclick', <span class="c-commt2">// event that allows toggling between small and large elements - default is double click</span>
-  edge        : 30          <span class="c-commt2">// How far outside the wrapped edges the mouse can go; previously called "expansionSize"</span>
-});
-</code></pre>
+		<pre class="js">$(&quot;#zoom&quot;).anythingZoomer({
+  // content areas
+  smallArea   : 'small',    // class of small content area; the element with this class name must be inside of the wrapper
+  largeArea   : 'large',    // class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically
+  clone       : false,      // Make a clone of the small content area, use css to modify the style
 
-		<h2>Methods</h2>
+  // appearance
+  overlay     : false,      // set to true to apply overlay class "az-overlay"; false to not apply it
+  speed       : 100,        // fade animation speed (in milliseconds)
+  edge        : 30,         // How far outside the wrapped edges the mouse can go; previously called "expansionSize"
 
+  // functionality
+  switchEvent : 'dblclick', // event that allows toggling between small and large elements - default is double click
+
+  // callbacks
+  initialzied : function(e, zoomer){}, // AnythingZoomer done initializing
+  zoom        : function(e, zoomer){}, // zoom window visible
+  unzoom      : function(e, zoomer){}  // zoom window hidden
+});</pre>
+
+		<h2 id="methods">Methods</h2>
+
+		<h3>Control Zoom Window Externally</h3>
 		<p>You can open the zoom window using an external link using these methods. This would be useful to highlight portions of the content in say instructions on how to use an app or name the presidents in the image demo.</p>
 
 
-<pre><code><span class="c-commt2">// TARGET X,Y COORDINATE
+<pre class="js">// TARGET X,Y COORDINATE
 // $('.zoom').anythingZoomer( x, y, [ w, h ] );
 // x, y = left and top coords to target (will be centered in the zoom window)
 // w, h = width and height of the zoom window, if not defined, it will default to the css definition
 // Example: $('.zoom').anythingZoomer( 82, 50, [200,200] );
-// 82, 50 will target George Washington; [200,200] will make the zoom window 200px x 200px in size</span>
+// 82, 50 will target George Washington; [200,200] will make the zoom window 200px x 200px in size
 
 $('.zoom').anythingZoomer( 82, 50, [200,200] );
 
-<span class="c-commt2">// TARGET AN OBJECT
+// TARGET AN OBJECT
 // $('.zoom').anythingZoomer( 'selector', [ xOffset, yOffset ], [zoomW, zoomH] );
 // 'selector' - jQuery selector targeting the element
 // [xOffset, yOffset] - by default the zoom window will center itself on the element, if you want to move the window, change the offset values (negative values are okay)
@@ -183,34 +210,146 @@ $('.zoom').anythingZoomer( 82, 50, [200,200] );
 // Example: $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
 // '.day[rel=2009-08-26]' targets the table cell with day class name and rel attribute of "2009-08-26"
 // [ 0, 0 ]  has no x or y offset; this can be replaced with '' (empty string); or if only one number is included, like [-1] this sets the xOffset only
-// [200,200] will make the zoom window 200px x 200px in size</span>
+// [200,200] will make the zoom window 200px x 200px in size
 
 $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
-</code></pre>
+</pre>
 
 <h3>Image Demo Example</h3>
-<pre><code>&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;82,50&quot;&gt;George Washington&lt;/a&gt;,
+<pre class="html">&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;82,50&quot;&gt;George Washington&lt;/a&gt;,
 &lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;105,58&quot;&gt;Thomas Jefferson&lt;/a&gt;,
 &lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;123,72&quot;&gt;Theodore Roosevelt&lt;/a&gt; or
-&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;148,72&quot;&gt;Abraham Lincoln&lt;/a&gt;</code></pre>
+&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;148,72&quot;&gt;Abraham Lincoln&lt;/a&gt;</pre>
 
-<pre><code>$('.president')
-  <span class="c-commt2">// prevent the link from doing anything</span>
+<pre class="js">$('.president')
+  // prevent the link from doing anything
   .bind('click', function(){
     return false;
   })
-  <span class="c-commt2">// click or mouseover the link to show the zoom window</span>
+  // click or mouseover the link to show the zoom window
   .bind('mouseover click', function(){
-    <span class="c-commt2">// get coordinates from rel attribute</span>
+    // get coordinates from rel attribute
     var loc = $(this).attr('rel');
     if (loc && loc.indexOf(',') > 0) {
       loc = loc.split(',');
-      <span class="c-commt2">// send the coordinates to anythingZoomer</span>
+      // send the coordinates to anythingZoomer
       $('.zoom').anythingZoomer( loc[0], loc[1] );
     }
     return false;
-  });
-</code></pre>
+  });</pre>
+
+		<h2 id="callbacks">Callbacks and Events</h2>
+
+		<p>These callbacks were added to allow further customizations.</p>
+
+		<h3>Callback functions</h3>
+
+<pre class="js">$('#zoom').anythingZoomer({
+  // initialized occurs after AnythingZoomer has initialized
+  initialized : function(e, zoomer){},
+  // zoom occurs when the zoom window is visible
+  zoom        : function(e, zoomer){},
+  // unzoom occurs when the zoom window is hidden
+  unzoom      : function(e, zoomer){}
+});
+</pre>
+
+		<h3>Events</h3>
+
+		<p>Bind to the AnythingZoomer's events as follows:</p>
+
+<pre class="js">
+$('#zoom').bind('initialized', function(e, zoomer){
+  // do something after AnythingZoomer has initialized
+});
+
+$('#zoom').bind('zoom unzoom', function(e, zoomer){
+  // do something when the zoom toggles
+  if (e.type === "zoom") {
+    // do something when zoomed
+  } else {
+    // do something when unzoomed
+  }
+});</pre>
+
+		<h3>Callback and Events Arguments and Functions</h3>
+
+		<p>These arguments and functions are available from the callback or event methods, or from the <code>zoomer</code> data object.
+			<br>Access the AnythingZoomer object from outside of callbacks and events as follows:</p>
+		
+<pre class="js">var zoomer = $('#zoom').data('zoomer');</pre>
+
+		<h4>zoomer.$wrap</h4>
+		<ul>
+			<li>jQuery object of the wrapper which contains both the large and small content.</li>
+		</ul>
+
+		<h4>zoomer.state</h4>
+		<ul>
+			<li>true when the small content is showing, false when large content is visible.</li>
+		</ul>
+
+		<h4>zoomer.current</h4>
+		<ul>
+			<li>This variable contains the current x and y position of the mouse within the small content area.</li>
+			<li>The value is updated everytime the mouse is moved, so it can be monitored externally if desired.</li>
+		</ul>
+
+		<h4>zoomer.$inner</h4>
+		<ul>
+			<li>jQuery object of the span immediately inside of <code>zoomer.$wrap</code>.</li>
+			<li>This is the element that centers the small and large content using css; look in <code>.az-wrap-inner</code>.</li>
+		</ul>
+
+		<h4>zoomer.$small</h4>
+		<ul>
+			<li>jQuery object of the small area.</li>
+		</ul>
+
+		<h4>zoomer.$large</h4>
+		<ul>
+			<li>jQuery object of the large area.</li>
+		</ul>
+
+		<h4>zoomer.$zoom</h4>
+		<ul>
+			<li>jQuery object of the zoom window which contains the large content area.</li>
+			<li>This is the zoom window that follows the mouse and repositions the large area.</li>
+		</ul>
+
+		<h4>zoomer.$overlay</h4>
+		<ul>
+			<li>jQuery object of the overlay element which is contained within the small area and has the same dimensions.</li>
+			<li>When the <code>overlay</code> option is true, this object gets the <code>az-overlay</code> class name applied to it.</li>
+		</ul>
+
+		<h4>zoomer.options.{name}</h4>
+		<ul>
+			<li>Access any of the zoomer options (e.g. <code>zoomer.options.edge</code>).</li>
+			<li>Trying to set the options this way may break the zoomer.</li>
+		</ul>
+
+		<h4>zoomer.setTarget('selector', [xOffset, yOffset], [zoomW, zoomH])</h4>
+		<ul>
+			<li>This function is called when controlling the zoom window externally.</li>
+			<li>Please refer to the methods section for more details on how to set the parameters.</li>
+		</ul>
+
+		<h4>zoomer.showSmall()</h4>
+		<ul>
+			<li>This function is called when switching from the large content to the small content.</li>
+		</ul>
+
+		<h4>zoomer.showLarge()</h4>
+		<ul>
+			<li>This function is called when switching from the small to large content.</li>
+		</ul>
+
+		<h4>zoomer.hideZoom()</h4>
+		<ul>
+			<li>This function is called when the zoom window needs to be hidden.</li>
+			<li>The "unzoom" callback will not be triggered.</li>
+		</ul>
 
 </div>
 

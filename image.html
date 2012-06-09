@@ -18,6 +18,12 @@
 			overlay : true
 		});
 
+$('.zoom').bind('zoom unzoom', function(e){
+	console.debug(e.type);
+});
+
+
+
 		$('.president')
 		.bind('click', function(){
 			return false;
@@ -43,12 +49,13 @@
 	<a href="https://github.com/Mottie/AnythingZoomer/downloads" id="dl">Download</a>
 
 	<ul id="nav">
-		<li class="cal"><a href="index.html">Calendar Demo</a></li>
-		<li class="img"><a href="image.html">Image Demo</a></li>
-		<li class="swp"><a href="swap.html">Swap Demo</a></li>
-		<li class="txt"><a href="text.html">Text Demo</a></li>
-		<li class="dbl"><a href="double.html">Double Demo</a></li>
-		<li class="use"><a href="use.html">Usage</a></li>
+		<li><a href="index.html">Calendar Demo</a></li>
+		<li><a class="current" href="image.html">Image Demo</a></li>
+		<li><a href="swap.html">Swap Demo</a></li>
+		<li><a href="text.html">Text Demo</a></li>
+		<li><a href="double.html">Double Demo</a></li>
+		<li><a class="play" href="http://jsfiddle.net/Mottie/YwwGL/">Playground</a></li>
+		<li><a class="use" href="use.html">Usage</a></li>
 	</ul>
 
 	<h2>Image Demo</h2>

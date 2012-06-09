@@ -4,26 +4,28 @@ html											{ overflow-y: scroll; }
 body											{ font: 14px Georgia, Serif; background: #444; }
 #main-content							{ width: 900px; margin: 20px auto; padding: 20px; background: white; -moz-border-radius: 20px; -moz-box-shadow: #222 5px 5px 5px; -webkit-border-radius: 20px; -webkit-box-shadow: #222 5px 5px 5px; position: relative; }
 pre												{ width: 96%; overflow-x: auto; overflow-y: hidden; margin: 0 0 12px 0; padding: 15px; background: #eee; border: 1px solid #ccc; }
-code											{ font: 11px Monaco, Courier, MonoSpace; }
+code											{ font: 11px Monaco, Courier, MonoSpace; background: #eee; }
 ul												{ margin: 0 0 12px 30px; }
 button										{ padding: 5px; }
 
 /* NAV */
-#nav											{ width: 600px; list-style: none; overflow: hidden; margin: 0 auto 22px auto; }
+#nav											{ width: 650px; list-style: none; overflow: hidden; margin: 0 auto 22px auto; }
 #nav li										{ display: inline; }
-#nav li a									{ display: block; float: left; padding: 8px; text-decoration: none; }
+#nav li a									{ display: block; float: left; padding: 8px; text-decoration: none; color: #000; background: #efefef; margin-left: 2px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+#nav li a.play						{ background: #070; color: #fff; }
+#nav li a.use							{ background: #00d; color: #fff; }
 #nav li a:hover,
-#calendar #nav li.cal a,
-#image #nav li.img a,
-#swap #nav li.swp a,
-#text #nav li.txt a,
-#use #nav li.use a,
-#double #nav li.dbl a			{ background: #444; color: white; }
+#nav li a.current					{ background: #444; color: white; }
 
-h1												{ width: 600px; font: bold 40px Helvetica, Sans-Serif; letter-spacing: -1px; margin: 0 auto 12px auto; text-align: center; }
-h2												{ font: bold 30px Helvetica, Sans-Serif; letter-spacing: -1px; margin: 0 0 6px 0; text-align: center; }
-p													{ margin: 0 0 12px 0; text-align: center; }
-#dl												{ position: absolute; top: 15px; right: 15px; text-decoration: none; background: #222; color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; padding: 8px 14px; }
+#to-top										{ font: bold 40px Helvetica, Sans-Serif; text-decoration: none; position: fixed; display: block; top: 70px; left: 0px;width: 55px;  height: 50px; background: #000; color: #fff; opacity: 0; }
+
+h1, h2, h3, h4						{ font: bold 40px Helvetica, Sans-Serif; text-align: center; letter-spacing: -1px; }
+h1												{ width: 600px; margin: 0 auto 12px auto; }
+h2												{ font-size: 30px; margin: 0 0 6px 0; }
+h3												{ font-size: 20px; font-variant: small-caps; }
+h4												{ font-size: 16px; text-align: left; }
+p, #use p.sections				{ margin: 0 0 12px 0; text-align: center; }
+#dl												{ position: absolute; top: 15px; right: 15px; text-decoration: none; background: #222; color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; padding: 8px 14px; }
 #dl:hover									{ background: #999; }
 hr												{ margin-bottom: 20px; }
 #use p,
@@ -62,7 +64,7 @@ caption										{ background: #1634D8; padding: 3px; color: white; font: 14px H
 .calendar td a						{ display: block; padding: 3px; background: #900; color: white; }
 #months-tables .calendar td a:hover,
 #months-tables .calendar td a[style]:hover  { background: black !important; text-decoration: none; }
-.day 											{ text-align: center }
+.day 											{ text-align: center; }
 .past-day									{ background-color: #eee; }
 #months-tables						{ width: 100%; }
 #months-tables td					{ vertical-align: top; }

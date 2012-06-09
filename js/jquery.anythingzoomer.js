@@ -1,12 +1,11 @@
-﻿/*
+﻿/*!
 	AnythingZoomer v1.2
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
-
-(function($){
+;(function($){
 	$.anythingZoomer = function(el, options){
-		var n, t, o, base = this;
+		var n, o, t, base = this;
 		base.$wrap = $(el);
 		base.wrap = el;
 
@@ -39,6 +38,7 @@
 						base.$zoom.stop(true,true).fadeIn(o.speed);
 						if (o.overlay) { base.$overlay.addClass(n.overlay); }
 						base.$smInner.addClass(n.hovered);
+						base.$wrap.trigger('zoom', base);
 					}
 				})
 				.bind('mouseleave' + n.namespace, function(){
@@ -47,7 +47,7 @@
 						// i.e. moving from a link to the image
 						base.timer = setTimeout(function(){
 							if (base.$zoom.hasClass(n.windowed)){
-								base.hideZoom();
+								base.hideZoom(true);
 							}
 						}, 200);
 					}
@@ -58,7 +58,7 @@
 						// get current offsets in case page positioning has changed
 						// Double demo: expanded text demo will offset image demo zoom window
 						var off = base.$small.offset();
-						base.zoomAt( e.pageX - off.left - base.$inner.position().left, e.pageY - off.top );
+						base.zoomAt( e.pageX - off.left - base.$inner.position().left, e.pageY - off.top, null, true );
 					}
 				})
 				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
@@ -72,7 +72,15 @@
 
 			base.showSmall();
 
+			// add events
+			$.each('initialized zoomed unzoomed'.split(' '), function(i,f){
+				if ($.isFunction(o[f])){
+					base.$wrap.bind(f, o[f]);
+				}
+			});
+
 			base.initialized = true;
+			base.$wrap.trigger('initialized', base);
 
 		};
 
@@ -218,10 +226,13 @@
 			// hovered, but not really
 			base.$smInner.addClass(n.hovered);
 
+			// zoom window triggered
+			base.$wrap.trigger('zoom', base);
+
 		};
 
 		// x, y, [zoomX, zoomY] - zoomX, zoomY are the dimensions of the zoom window
-		base.zoomAt = function(x, y, sz){
+		base.zoomAt = function(x, y, sz, internal){
 			var sx = (sz ? sz[0] || 0 : 0) || base.last[0],
 				sy = (sz ? sz[1] || sz[0] || 0 : 0) || base.last[1],
 				sx2 = sx / 2,
@@ -231,9 +242,11 @@
 
 			// save new zoom size
 			base.last = [ sx, sy ];
+			// save x, y for external access
+			base.current = [ x, y ];
 
 			if ( (x < -ex) || (x > base.smallDim[0] + ex) || (y < -ey) || (y > base.smallDim[1] + ey) ){
-				base.hideZoom();
+				base.hideZoom(internal);
 				return;
 			} else {
 				// Sometimes the mouseenter event is delayed
@@ -256,7 +269,10 @@
 
 		};
 
-		base.hideZoom = function(){
+		base.hideZoom = function(internal){
+			if (internal && base.$smInner.hasClass(n.hovered)) {
+				base.$wrap.trigger('unzoom', base);
+			}
 			base.last = base.zoomDim;
 			base.$zoom.stop(true,true).fadeOut(o.speed);
 			base.$overlay.removeClass(n.overlay);
