@@ -49,3 +49,17 @@
 	filter: alpha(opacity=50);
 }
 */
+
+/* edit mode coordinate styling */
+.az-coords {
+	display: none; /* hidden when expanded */
+}
+.az-zoom .az-coords {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #000;
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+}

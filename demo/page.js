@@ -10,9 +10,7 @@
 
 	// to the top arrow
 	$win.scroll(function(){
-		$top.stop().animate({
-			opacity: $win.scrollTop() > 450 ? 1 : 0
-		}, 100);
+		$top.stop(true,true)[ $win.scrollTop() > 450 ? 'fadeIn' : 'fadeOut']();
 	});
 
 	// smooth scrolling - http://css-tricks.com/snippets/jquery/smooth-scrolling/

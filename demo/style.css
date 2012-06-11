@@ -7,23 +7,26 @@ pre												{ width: 96%; overflow-x: auto; overflow-y: hidden; margin: 0 0 1
 code											{ font: 11px Monaco, Courier, MonoSpace; background: #eee; }
 ul												{ margin: 0 0 12px 30px; }
 button										{ padding: 5px; }
+button.selected						{ color: #00f; }
 
 /* NAV */
-#nav											{ width: 650px; list-style: none; overflow: hidden; margin: 0 auto 22px auto; }
+#nav											{ width: 510px; list-style: none; overflow: hidden; margin: 0 auto 22px auto; }
 #nav li										{ display: inline; }
 #nav li a									{ display: block; float: left; padding: 8px; text-decoration: none; color: #000; background: #efefef; margin-left: 2px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 #nav li a.play						{ background: #070; color: #fff; }
-#nav li a.use							{ background: #00d; color: #fff; }
+#nav li a.use							{ background: #006; color: #fff; }
+#nav li a.issue						{ background: #600; color: #fff; }
 #nav li a:hover,
 #nav li a.current					{ background: #444; color: white; }
 
-#to-top										{ font: bold 40px Helvetica, Sans-Serif; text-decoration: none; position: fixed; display: block; top: 70px; left: 0px;width: 55px;  height: 50px; background: #000; color: #fff; opacity: 0; }
+#to-top										{ font: bold 40px Helvetica, Sans-Serif; text-decoration: none; position: fixed; top: 70px; left: 0px;width: 55px; height: 50px; background: #000; color: #fff; }
 
-h1, h2, h3, h4						{ font: bold 40px Helvetica, Sans-Serif; text-align: center; letter-spacing: -1px; }
-h1												{ width: 600px; margin: 0 auto 12px auto; }
+h1, h2, h3, h4						{ font: bold 45px Helvetica, Sans-Serif; text-align: center; letter-spacing: -1px; }
+h1												{ width: 600px; margin: 0 auto 12px auto; font-family: 'Merienda One', cursive; }
 h2												{ font-size: 30px; margin: 0 0 6px 0; }
-h3												{ font-size: 20px; font-variant: small-caps; }
+h3												{ font-size: 20px; }
 h4												{ font-size: 16px; text-align: left; }
+sup												{ color: red; font-size: 30px; }
 p, #use p.sections				{ margin: 0 0 12px 0; text-align: center; }
 #dl												{ position: absolute; top: 15px; right: 15px; text-decoration: none; background: #222; color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; padding: 8px 14px; }
 #dl:hover									{ background: #999; }
@@ -31,6 +34,10 @@ hr												{ margin-bottom: 20px; }
 #use p,
 .large p,
 .small p									{ text-align: left; }
+.info											{ margin: 0 auto; }
+ul.info										{ width: 500px; }
+div.info									{ width: 800px; }
+div.info ul, ul.info			{ list-style: disc; }
 
 /* CODE HIGHLIGHTING */
 .c-wrap										{ background: #f3a01e; }
@@ -53,7 +60,7 @@ ul												{ list-style: none; }
 .large p									{ font-size: 16px; width: 600px; }
 
 /* FOR IMAGE DEMO */
-.small img								{ width: 225px; height: 150px; }
+.small img								{ width: 250px; height: 167px; }
 .large img								{ width: 500px; height: 333px; }
 
 /* CALENDAR SPECIFIC */

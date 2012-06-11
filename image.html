@@ -6,6 +6,7 @@
 	
 	<title>Anything Zoomer | Image</title>
 
+	<link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
 	<link rel="stylesheet" href="demo/style.css">
 	<link rel="stylesheet" href="css/anythingzoomer.css">
 
@@ -15,14 +16,12 @@
 	$(function() {
 
 		$(".zoom").anythingZoomer({
-			overlay : true
+			overlay : true,
+			edit: true,
+			// If you need to make the left top corner be at exactly 0,0, adjust the offset values below
+			offsetX : 0,
+			offsetY : 0
 		});
-
-$('.zoom').bind('zoom unzoom', function(e){
-	console.debug(e.type);
-});
-
-
 
 		$('.president')
 		.bind('click', function(){
@@ -44,29 +43,35 @@ $('.zoom').bind('zoom unzoom', function(e){
 
 <div id="main-content">
 
-	<h1>AnythingZoomer</h1>
+	<h1>AnythingZoomer<sup>2</sup></h1>
 
-	<a href="https://github.com/Mottie/AnythingZoomer/downloads" id="dl">Download</a>
+	<a href="https://github.com/Mottie/AnythingZoomer/zipball/master" id="dl">Download</a>
 
 	<ul id="nav">
-		<li><a href="index.html">Calendar Demo</a></li>
-		<li><a class="current" href="image.html">Image Demo</a></li>
-		<li><a href="swap.html">Swap Demo</a></li>
-		<li><a href="text.html">Text Demo</a></li>
-		<li><a href="double.html">Double Demo</a></li>
-		<li><a class="play" href="http://jsfiddle.net/Mottie/YwwGL/">Playground</a></li>
+		<li><a href="index.html">Calendar</a></li>
+		<li><a class="current" href="image.html">Image</a></li>
+		<li><a href="swap.html">Swap</a></li>
+		<li><a href="text.html">Text</a></li>
+		<li><a href="double.html">Double</a></li>
 		<li><a class="use" href="use.html">Usage</a></li>
+		<li><a class="play" href="http://jsfiddle.net/Mottie/KwvjL/">Playground</a></li>
+		<li><a class="issue" href="https://github.com/Mottie/AnythingZoomer/issues">Issues</a></li>
 	</ul>
 
 	<h2>Image Demo</h2>
 
-	<p>Mouse over to see zoomed in version, double click to toggle between large and small versions. A small area overlay is applied when hovered.</p>
+	<p>
+		<ul class="info">
+			<li>A small area overlay is applied when hovered (makes it darker). It is activated by setting the "overlay" option to true (new in v2.0).</li>
+			<li>The numbers in the upper right corner of the zoom window display the center of the zoom window. It is activated when the "edit" option is true; this makes it easier for you to get the coordinates you need for the target links like below (new in v2.0).</li>
+		</ul>
+	</p>
 
-	<p>Target 
-		<a href="#" class="president" rel="82,50">George Washington</a>,
-		<a href="#" class="president" rel="105,58">Thomas Jefferson</a>,
-		<a href="#" class="president" rel="123,72">Theodore Roosevelt</a> or
-		<a href="#" class="president" rel="148,72">Abraham Lincoln</a>
+	<p>Target
+		<a href="#" class="president" rel="88,51">George Washington</a>,
+		<a href="#" class="president" rel="114,62">Thomas Jefferson</a>,
+		<a href="#" class="president" rel="133,80">Theodore Roosevelt</a> or
+		<a href="#" class="president" rel="160,78">Abraham Lincoln</a>
 	</p>
 
 	<hr>

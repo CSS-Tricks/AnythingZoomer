@@ -1,5 +1,5 @@
 ﻿/*!
-	AnythingZoomer v1.2
+	AnythingZoomer v2.0
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
@@ -58,7 +58,7 @@
 						// get current offsets in case page positioning has changed
 						// Double demo: expanded text demo will offset image demo zoom window
 						var off = base.$small.offset();
-						base.zoomAt( e.pageX - off.left - base.$inner.position().left, e.pageY - off.top, null, true );
+						base.zoomAt( e.pageX - off.left, e.pageY - off.top, null, true );
 					}
 				})
 				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
@@ -121,6 +121,10 @@
 				base.$zoom = base.$wrap.find('.' + n.zoom);
 			}
 
+			if (o.edit && !base.edit) {
+				base.edit = $('<span class="' + n.edit + '"></span>').appendTo(base.$zoom);
+			}
+
 			// wrap inner content with a span to get a more accurate width
 			// get height from either the inner content itself or the children of the inner content since span will need
 			// a "display:block" to get an accurate height, but adding that messes up the width
@@ -133,8 +137,8 @@
 			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;" />').prependTo(base.$small);
 
 			base.ratio = [
-				base.smallDim[0] === 0 ? 1 : base.largeDim[0] / base.smallDim[0],
-				base.smallDim[1] === 0 ? 1 : base.largeDim[1] / base.smallDim[1]
+				base.largeDim[0] / (base.smallDim[0] || 1),
+				base.largeDim[1] / (base.smallDim[1] || 1)
 			];
 
 			base.$inner.add(base.$overlay).css({
@@ -238,12 +242,16 @@
 				sx2 = sx / 2,
 				sy2 = sy / 2,
 				ex = o.edge || (o.edge === 0 ? 0 : sx2 * 0.66), // 2/3 of zoom window
-				ey = o.edge || (o.edge === 0 ? 0 : sy2 * 0.66); // allows edge to be zero
+				ey = o.edge || (o.edge === 0 ? 0 : sy2 * 0.66), // allows edge to be zero
+				m = parseInt(base.$inner.css('margin-left'), 10) || base.$inner.position().left || 0;
 
 			// save new zoom size
 			base.last = [ sx, sy ];
 			// save x, y for external access
 			base.current = [ x, y ];
+
+			// show coordinates
+			if (o.edit) { base.edit.html(Math.round(x) + ', ' + Math.round(y)); }
 
 			if ( (x < -ex) || (x > base.smallDim[0] + ex) || (y < -ey) || (y > base.smallDim[1] + ey) ){
 				base.hideZoom(internal);
@@ -255,7 +263,7 @@
 
 			// center zoom under the cursor
 			base.$zoom.css({
-				left   : x - sx2 + parseInt(base.$inner.css('margin-left'), 10) || 0,
+				left   : x - sx2 + m,
 				top    : y - sy2,
 				width  : sx,
 				height : sy
@@ -263,8 +271,8 @@
 
 			// match locations of small element to the large
 			base.$large.css({
-				left : -(x - sx2/2) * base.ratio[0],
-				top  : -(y - sy2/2) * base.ratio[1]
+				left : -(x - o.offsetX - sx2/2) * base.ratio[0],
+				top  : -(y - o.offsetY - sy2/2) * base.ratio[1]
 			});
 
 		};
@@ -299,17 +307,25 @@
 		hovered    : 'az-hovered',
 		zoom       : 'az-zoom',
 		windowed   : 'az-windowed', // zoom window active
-		expanded   : 'az-expanded'  // zoom window inactive (large is showing)
+		expanded   : 'az-expanded', // zoom window inactive (large is showing)
+		edit       : 'az-coords'    // coordinate window
 	};
 
 	$.anythingZoomer.defaultOptions = {
+		// content areas
 		smallArea   : 'small',    // class of small content area; the element with this class name must be inside of the wrapper
 		largeArea   : 'large',    // class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically
 		clone       : false,      // Make a clone of the small content area, use css to modify the style
+		// appearance
 		overlay     : false,      // set to true to apply overlay class "az-overlay"; false to not apply it
 		speed       : 100,        // fade animation speed (in milliseconds)
+		edge        : 30,         // How far outside the wrapped edges the mouse can go; previously called "expansionSize"
+		offsetX     : 0,          // adjust the horizontal position of the large content inside the zoom window as desired
+		offsetY     : 0,          // adjust the vertical position of the large content inside the zoom window as desired
+		// functionality
 		switchEvent : 'dblclick', // event that allows toggling between small and large elements - default is double click
-		edge        : 30          // How far outside the wrapped edges the mouse can go; previously called "expansionSize"
+		// edit mode
+		edit        : false       // add x,y coordinates into zoom window to make it easier to find coordinates
 	};
 
 	$.fn.anythingZoomer = function(options, second, sx, sy){

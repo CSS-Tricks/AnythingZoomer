@@ -5,13 +5,18 @@
 * [Original post](http://css-tricks.com/3075-anythingzoomer-jquery-plugin/) at CSS-Tricks.
 * Have an issue? Submit it [here](https://github.com/Mottie/AnythingZoomer/issues).
 
+## Known issues
+
+* In the [text demo](http://mottie.github.com/AnythingZoomer/text.html), you can resize the large area content dynamically. At 2x, the top left corner of the large content matches the top left corner of the small content. But as the size increases (up to 4x), the spacing of the content from the top left corner increases. This happens with any content. I'm still looking for a fix.
+
 ## Changelog
 
-### Version 1.2 (6/8/2012)
+### Version 2.0 (6/11/2012)
 * AnythingZoomer can now be updated to change both the small and large content dynamically.
   * To update the content, just call anythingZoomer without any options: `$('#zoom').anythingZoomer();`.
-  * Added a [Swap image](http://mottie.github.com/AnythingZoomer/swap.html) demo.
-* Modified plugin to properly position the zoom window with dynamically centered content.
+  * Added a [Swap image](http://mottie.github.com/AnythingZoomer/swap.html) demo to show this in action!
+* Modified the plugin to properly position the zoom window with dynamically centered content.
+  * Added a `margin: 0 auto` to `.az-wrapper-inner` to center both the small and large content.
 * A class name of `az-hovered` will be applied to the `az-small-inner` when it is hovered.
   * This can be used to change the opacity of the `smallArea` content while the zoom window is active.
   * See the anythingzoomer.css file; the addition is commented out.
@@ -25,12 +30,23 @@
   * If `false`, the default setting, the overlay will remain transparent.
   * The [Image demo](http://mottie.github.com/AnythingZoomer/image.html) has been updated to demonstrate the overlay.
 * Added events and callbacks:
-  * "initialized" event which occurs after AnythingZoomer has finished initializing.
-  * "zoom" event occurs when the zoom window is visible.
-  * "unzoom" event occurs when the zoom window is hidden.
+  * `initialized` event which occurs after AnythingZoomer has finished initializing.
+  * `zoom` event occurs when the zoom window is visible.
+  * `unzoom` event occurs when the zoom window is hidden.
   * Instructions on how to use the callback or events can be found in the [documentation](http://mottie.github.com/AnythingZoomer/use.html).
+* Added an `edit` option:
+  * When true, it will add the mouse coordinates in the upper right corner of the zoom window.
+  * If false, the default setting, no coordinates are shown.
+  * Added to assign in finding the center of the zoom window for use in external zoom window links.
+  * Resized the small Rushmore image in attempts to maintain a small-to-large content ratio of 2.5 - it makes the coordinates match better when using edit mode ;).
+* Added `offsetX` and `offsetY` options:
+  * When using the `edit` option, you may sometimes notice that the top left corner of the image isn't at 0,0 and the bottom right corner doesn't match the small area dimensions like it should be. This is partially due to the jQuery offset not including borders, margins or padding. And partially due to the ratio between the small and large areas.
+  * Sometimes it isn't a big deal to be a few pixels off, but if you need to adjust it perfectly, use these options. To do this, enable the edit mode coordinates (set edit to true) then use these options to adjust the location of the large content within the zoom window to set the proper position.
+  * Due to the calculation of the ratio between the small and large content, the bottom right corner may not perfectly coincide either.
 * Updated `edge` option to now allow setting it to zero.
 * Fixed an issue in the Double Demo when the Text Demo was expanded (large content showing), and the zoom window would not line up properly in the Image demo.
+* Fixed an issue where moving from the AnythingZoomer window to an external link would cause a flicker.
+* Updated the documentation page with the new options and features.
 
 ### Version 1.1.2 (12/9/2011)
 * Added package.json created by Richard D. Worth
