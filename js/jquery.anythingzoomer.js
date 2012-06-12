@@ -4,11 +4,14 @@
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
 ;(function($){
+
+	var handlerMouseEnter, handlerMouseLeave, handlerMouseMove;
+	var zoomToggleEventName;
+
 	$.anythingZoomer = function(el, options){
 		var n, o, t, base = this;
 		base.$wrap = $(el);
 		base.wrap = el;
-
 		// Add a reverse reference to the DOM object
 		base.$wrap.data('zoomer', base);
 
@@ -32,43 +35,57 @@
 			base.$large.addClass(n.large);
 			base.$small.addClass(n.small);
 
+
+			handlerMouseEnter = (function(){
+				if (base.state){
+					base.$zoom.stop(true,true).fadeIn(o.speed);
+					if (o.overlay) { base.$overlay.addClass(n.overlay); }
+					base.$smInner.addClass(n.hovered);
+					base.$wrap.trigger('zoom', base);
+				}
+			});
+
+			handlerMouseLeave = (function(){
+				if (base.state){
+					// delay hiding to prevent flash if user hovers over it again
+					// i.e. moving from a link to the image
+					base.timer = setTimeout(function(){
+						if (base.$zoom.hasClass(n.windowed)){
+							base.hideZoom(true);
+						}
+					}, 200);
+				}
+			});
+
+			handlerMouseMove = (function(e){
+				if (base.state){
+					clearTimeout(base.timer);
+					// get current offsets in case page positioning has changed
+					// Double demo: expanded text demo will offset image demo zoom window
+					var off = base.$small.offset();
+					base.zoomAt( e.pageX - off.left, e.pageY - off.top, null, true );
+				}
+			});
+
+			handlerZoomToggleEvent = (function(){
+				// toggle visible image
+				if (base.state){
+					base.showLarge();
+				} else {
+					base.showSmall();
+				}
+			});
+
+			zoomToggleEventName = o.switchEvent + (o.switchEvent !== '' ? n.namespace : '');
+
+
+
+
 			base.$inner
-				.bind('mouseenter' + n.namespace, function(){
-					if (base.state){
-						base.$zoom.stop(true,true).fadeIn(o.speed);
-						if (o.overlay) { base.$overlay.addClass(n.overlay); }
-						base.$smInner.addClass(n.hovered);
-						base.$wrap.trigger('zoom', base);
-					}
-				})
-				.bind('mouseleave' + n.namespace, function(){
-					if (base.state){
-						// delay hiding to prevent flash if user hovers over it again
-						// i.e. moving from a link to the image
-						base.timer = setTimeout(function(){
-							if (base.$zoom.hasClass(n.windowed)){
-								base.hideZoom(true);
-							}
-						}, 200);
-					}
-				})
-				.bind('mousemove' + n.namespace, function(e){
-					if (base.state){
-						clearTimeout(base.timer);
-						// get current offsets in case page positioning has changed
-						// Double demo: expanded text demo will offset image demo zoom window
-						var off = base.$small.offset();
-						base.zoomAt( e.pageX - off.left, e.pageY - off.top, null, true );
-					}
-				})
-				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
-					// toggle visible image
-					if (base.state){
-						base.showLarge();
-					} else {
-						base.showSmall();
-					}
-				});
+				.bind('mouseenter' + n.namespace, handlerMouseEnter)
+				.bind('mouseleave' + n.namespace, handlerMouseLeave)
+				.bind('mousemove' + n.namespace, handlerMouseMove)
+				.bind(zoomToggleEventName, handlerZoomToggleEvent);
 
 			base.showSmall();
 
@@ -196,6 +213,26 @@
 			});
 
 		};
+
+
+
+		base.disable = function(){
+			n = $.anythingZoomer.classNames;
+			base.hideZoom();
+			base.$inner.unbind('mouseenter' + n.namespace)
+					   .unbind('mouseleave' + n.namespace)
+			           .unbind('mousemove' + n.namespace)
+			           .unbind(zoomToggleEventName);
+		};
+
+		base.enable = function(){
+			n = $.anythingZoomer.classNames;
+			base.$inner.bind('mouseenter' + n.namespace, handlerMouseEnter)
+			           .bind('mouseleave' + n.namespace, handlerMouseLeave)
+			           .bind('mousemove' + n.namespace, handlerMouseMove)
+			           .bind(zoomToggleEventName, handlerZoomToggleEvent);
+		};
+
 
 		// x,y coords -> George Washington in image demo
 		// base.setTarget( 82, 50, [200,200] );
