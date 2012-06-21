@@ -24,6 +24,13 @@
 
 		$(".zoom:last").anythingZoomer();
 
+		$("button").click(function(){
+			var state = $(this).text(); // enable or disable
+			$(".zoom:eq(" + $(this).attr('data-id') + ")").anythingZoomer(state);
+			$(this).text( (state === "enable") ? "disable" : "enable" );
+			return false;
+		});
+
 	});
 	</script>
 </head>
@@ -53,12 +60,13 @@
 		<ul class="info">
 			<li>Mouse over either section below to see the zoom window.</li>
 			<li>Double click within the section to toggle between the large and small versions.</li>
+			<li>Use the enable/disable button to turn AnythingZoomer on or off.</li>
 		</ul>
 	</p>
 
 	<hr>
 
-	<p><strong>Text Demo</strong></p>
+	<p><strong>Text Demo <button data-id="0">disable</button></strong></p>
 
 	<div class="zoom">
 
@@ -72,7 +80,7 @@
 
 	<br>
 
-	<p><strong>Image Demo</strong></p>
+	<p><strong>Image Demo <button data-id="1">disable</button></strong></p>
 
 	<div class="zoom second">
 

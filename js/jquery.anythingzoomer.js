@@ -1,5 +1,5 @@
 ﻿/*!
-	AnythingZoomer v2.0
+	AnythingZoomer v2.1
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
@@ -20,6 +20,7 @@
 
 			// true when small element is showing, false when large is visible
 			base.state = true;
+			base.enabled = true;
 
 			base.$wrap.addClass(n.wrap).wrapInner('<span class="' + n.wrapInner + '"/>');
 			base.$inner = base.$wrap.find('.' + n.wrapInner);
@@ -34,7 +35,7 @@
 
 			base.$inner
 				.bind('mouseenter' + n.namespace, function(){
-					if (base.state){
+					if (base.state && base.enabled){
 						base.$zoom.stop(true,true).fadeIn(o.speed);
 						if (o.overlay) { base.$overlay.addClass(n.overlay); }
 						base.$smInner.addClass(n.hovered);
@@ -42,7 +43,7 @@
 					}
 				})
 				.bind('mouseleave' + n.namespace, function(){
-					if (base.state){
+					if (base.state && base.enabled){
 						// delay hiding to prevent flash if user hovers over it again
 						// i.e. moving from a link to the image
 						base.timer = setTimeout(function(){
@@ -53,7 +54,7 @@
 					}
 				})
 				.bind('mousemove' + n.namespace, function(e){
-					if (base.state){
+					if (base.state && base.enabled){
 						clearTimeout(base.timer);
 						// get current offsets in case page positioning has changed
 						// Double demo: expanded text demo will offset image demo zoom window
@@ -62,6 +63,7 @@
 					}
 				})
 				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
+					if (!base.enabled) { return; }
 					// toggle visible image
 					if (base.state){
 						base.showLarge();
@@ -288,6 +290,14 @@
 			base.lastKey = null;
 		};
 
+		base.setEnabled = function(enable){
+			base.enabled = enable;
+			if (!enable) {
+				base.showSmall();
+				base.hideZoom();
+			}
+		};
+
 		// Initialize zoomer
 		base.init();
 
@@ -338,8 +348,12 @@
 				} else {
 					(new $.anythingZoomer(this, options));
 				}
-			} else if ( anyZoom && ( typeof options === 'string' || (!isNaN(options) && !isNaN(second)) ) ){
-				anyZoom.setTarget(options, second, sx, sy);
+			} else if ( anyZoom && ( typeof options === 'string' )) {
+				if (/(en|dis)able/.test(options)) {
+					anyZoom.setEnabled( options === 'enable' );
+				} else if (!isNaN(options) && !isNaN(second)) {
+					anyZoom.setTarget(options, second, sx, sy);
+				}
 			}
 		});
 	};

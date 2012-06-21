@@ -302,6 +302,14 @@
 
 		<h2 id="methods">Methods</h2>
 
+		<h3>Enable or Disable AnythingZoomer</h3>
+		<p>To enable or disable AnythingZoomer, call the plugin with the appropriate text:</p>
+
+<pre class="js">$('.zoom').anythingZoomer('disable'); // disable AnythingZoomer
+$('.zoom').anythingZoomer('enable');  // enable AnythingZoomer</pre>
+
+		<p>This method is demonstrated in the <a href="double.html">Double</a> demo page. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.</p>
+
 		<h3>Control Zoom Window Externally</h3>
 		<p>You can open the zoom window using an external link using these methods. This would be useful to highlight portions of the content in say instructions on how to use an app or name the presidents in the image demo.</p>
 
@@ -441,13 +449,20 @@ $('#zoom').bind('zoom unzoom', function(e, zoomer){
 			<h4>zoomer.options.{name}</h4>
 			<ul>
 				<li>Access any of the zoomer options (e.g. <code>zoomer.options.edge</code>).</li>
-				<li>Trying to set the options this way may break the zoomer.</li>
+				<li>Trying to set the options this way is possible, but may break the zoomer.</li>
 			</ul>
 
 			<h4>zoomer.setTarget('selector', [xOffset, yOffset], [zoomW, zoomH])</h4>
 			<ul>
 				<li>This function is called when controlling the zoom window externally.</li>
+				<li>Call this function if you are using a jQuery selector to target an element; use <code>zoomer.zoomAt()</code> if you have specific coordinates to set.</li>
 				<li>Please refer to the methods section for more details on how to set the parameters.</li>
+			</ul>
+
+			<h4>zoomer.zoomAt(x, y, [zoomW, zoomH])</h4>
+			<ul>
+				<li>This function is called by the <code>zoomer.setTarget()</code> function after it calculates the x and y coordinates.</li>
+				<li>Call this function directly if you already know the coordinates.</li>
 			</ul>
 
 			<h4>zoomer.showSmall()</h4>
@@ -464,6 +479,13 @@ $('#zoom').bind('zoom unzoom', function(e, zoomer){
 			<ul>
 				<li>This function is called when the zoom window needs to be hidden.</li>
 				<li>The "unzoom" callback will not be triggered.</li>
+			</ul>
+
+			<h4>zoomer.setEnabled(boolean)</h4>
+			<ul>
+				<li>This function will enable (if boolean is true) or disable (if boolean is false) AnythingZoomer.</li>
+				<li>When the plugin is disabled, any open zoom window will be closed and the large content will be hidden.</li>
+				<li>This function is called directly from the shortcut method which allows you to call the plugin using 'enable' or 'disable'.</li>
 			</ul>
 
 		</div>

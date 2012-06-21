@@ -11,6 +11,24 @@
 
 ## Changelog
 
+### Version 2.1 (6/21/2012)
+* Added a method to enable or disable AnythingZoomer.
+
+    ```javascript
+    $('.zoom').anythingZoomer('disable'); // disable AnythingZoomer
+    $('.zoom').anythingZoomer('enable');  // enable AnythingZoomer
+    ```
+
+  or use the internal function directly or from a callback:
+
+    ```javascript
+    $('.zoom').data('zoomer').setEnabled(false); // disable AnythingZoomer
+    $('.zoom').data('zoomer').setEnabled(true);  // enable AnythingZoomer
+    ```
+
+  The [double](http://mottie.github.com/AnythingZoomer/double.html) demo has been updated to show this new method. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.
+  
+
 ### Version 2.0 (6/11/2012)
 * AnythingZoomer can now be updated to change both the small and large content dynamically.
   * To update the content, just call anythingZoomer without any options: `$('#zoom').anythingZoomer();`.
