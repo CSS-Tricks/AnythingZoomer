@@ -11,6 +11,9 @@
 
 ## Changelog
 
+### Version 2.1.1 (7/3/2012)
+* Fixed calendar demo links. The shortcut method was previously ignoring jQuery selectors: `$('#zoom').anythingZoomer('.day[rel=2009-08-26]');`.
+
 ### Version 2.1 (6/21/2012)
 * Added a method to enable or disable AnythingZoomer.
 
@@ -27,7 +30,6 @@
     ```
 
   The [double](http://mottie.github.com/AnythingZoomer/double.html) demo has been updated to show this new method. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.
-  
 
 ### Version 2.0 (6/11/2012)
 * AnythingZoomer can now be updated to change both the small and large content dynamically.

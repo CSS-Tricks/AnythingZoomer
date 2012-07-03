@@ -1,5 +1,5 @@
 ﻿/*!
-	AnythingZoomer v2.1
+	AnythingZoomer v2.1.1
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/Mottie/AnythingZoomer
 */
@@ -348,10 +348,10 @@
 				} else {
 					(new $.anythingZoomer(this, options));
 				}
-			} else if ( anyZoom && ( typeof options === 'string' )) {
+			} else if ( anyZoom && ( typeof options === 'string' || (!isNaN(options) && !isNaN(second)) ) ) {
 				if (/(en|dis)able/.test(options)) {
 					anyZoom.setEnabled( options === 'enable' );
-				} else if (!isNaN(options) && !isNaN(second)) {
+				} else {
 					anyZoom.setTarget(options, second, sx, sy);
 				}
 			}
