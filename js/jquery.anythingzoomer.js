@@ -1,7 +1,7 @@
 ﻿/*!
 	AnythingZoomer v2.1.1
 	Original by Chris Coyier: http://css-tricks.com
-	Get the latest version: https://github.com/Mottie/AnythingZoomer
+	Get the latest version: https://github.com/CSS-Tricks/AnythingZoomer
 */
 ;(function($){
 	$.anythingZoomer = function(el, options){

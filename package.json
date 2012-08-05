@@ -29,8 +29,8 @@
             "url": "https://github.com/Mottie"
         }
     ],
-    "demo" : "http://mottie.github.com/AnythingZoomer/",
-    "docs" : "http://mottie.github.com/AnythingZoomer/use.html",
+    "demo" : "http://css-tricks.github.com/AnythingZoomer/",
+    "docs" : "http://css-tricks.github.com/AnythingZoomer/use.html",
     "files": [
         "css/jquery.anythingzoomer.css",
         "js/jquery.anythingzoomer.js",
