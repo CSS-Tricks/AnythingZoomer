@@ -11,6 +11,16 @@
 
 ## Changelog
 
+### Version 2.2 (10/31/2012)
+* Fixed an issue with jQuery v1.8+:
+  * jQuery 1.8 changed how the [box-sizing measured the width](http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/). Which returned a width of zero for the inner zoom content.
+  * Changed the plugin to measure the width of the content children, so a zoom window should have its content wrapped or it may return an incorrect value.
+  * See [issue #7](https://github.com/CSS-Tricks/AnythingZoomer/issues/7).
+* Added a `delay` option:
+  * Setting a delay, in milliseconds, will delay the time until the zoom window opens.
+  * This is useful when a user quickly scrolls through the zoom area. 
+  * See [issue #8](https://github.com/CSS-Tricks/AnythingZoomer/issues/8) for this feature request.
+
 ### Version 2.1.1 (7/3/2012)
 * Fixed calendar demo links. The shortcut method was previously ignoring jQuery selectors: `$('#zoom').anythingZoomer('.day[rel=2009-08-26]');`.
 

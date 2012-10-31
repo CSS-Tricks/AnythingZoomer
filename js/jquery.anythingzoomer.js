@@ -159,11 +159,11 @@
 			// get height from either the inner content itself or the children of the inner content since span will need
 			// a "display:block" to get an accurate height, but adding that messes up the width
 			base.$zoom.show();
-			base.largeDim = [ base.$lgInner.width(), Math.max( base.$lgInner.height(), base.$lgInner.children().height() ) ];
+			base.largeDim = [ base.$lgInner.children().width(), Math.max( base.$lgInner.height(), base.$lgInner.children().height() ) ];
 			base.zoomDim = base.last = [ base.$zoom.width(), base.$zoom.height() ];
 			base.$zoom.hide();
 
-			base.smallDim = [ base.$smInner.width(), base.$small.height() ];
+			base.smallDim = [ base.$smInner.children().width(), base.$small.height() ];
 			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;" />').prependTo(base.$small);
 			base.ratio = [
 				base.largeDim[0] / (base.smallDim[0] || 1),
