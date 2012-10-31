@@ -1,9 +1,11 @@
-﻿/*!
-	AnythingZoomer v2.1.1
+/*!
+	AnythingZoomer v2.2
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/CSS-Tricks/AnythingZoomer
 */
+/*jshint browser:true, jquery:true */
 ;(function($){
+	"use strict";
 	$.anythingZoomer = function(el, options){
 		var n, o, t, base = this;
 		base.$wrap = $(el);
@@ -21,6 +23,7 @@
 			// true when small element is showing, false when large is visible
 			base.state = true;
 			base.enabled = true;
+			base.hovered = false;
 
 			base.$wrap.addClass(n.wrap).wrapInner('<span class="' + n.wrapInner + '"/>');
 			base.$inner = base.$wrap.find('.' + n.wrapInner);
@@ -35,14 +38,27 @@
 
 			base.$inner
 				.bind('mouseenter' + n.namespace, function(){
-					if (base.state && base.enabled){
-						base.$zoom.stop(true,true).fadeIn(o.speed);
-						if (o.overlay) { base.$overlay.addClass(n.overlay); }
-						base.$smInner.addClass(n.hovered);
-						base.$wrap.trigger('zoom', base);
+					base.saved = base.enabled;
+					base.hovered = true;
+					if (o.delay) {
+						clearTimeout(base.delay);
+						base.enabled = false;
+						base.delay = setTimeout(function(){
+							base.enabled = base.saved;
+							base.position.type = 'mousemove';
+							base.$inner.trigger(base.position);
+							base.reveal();
+						}, o.delay);
+					} else {
+						base.reveal();
 					}
 				})
 				.bind('mouseleave' + n.namespace, function(){
+					base.hovered = false;
+					if (o.delay) {
+						clearTimeout(base.delay);
+						base.enabled = base.saved;
+					}
 					if (base.state && base.enabled){
 						// delay hiding to prevent flash if user hovers over it again
 						// i.e. moving from a link to the image
@@ -54,6 +70,8 @@
 					}
 				})
 				.bind('mousemove' + n.namespace, function(e){
+					base.position = e;
+					if (!base.hovered) { return; }
 					if (base.state && base.enabled){
 						clearTimeout(base.timer);
 						// get current offsets in case page positioning has changed
@@ -84,6 +102,16 @@
 			base.initialized = true;
 			base.$wrap.trigger('initialized', base);
 
+		};
+
+		base.reveal = function(){
+			base.enabled = base.saved;
+			if (base.state && base.enabled){
+				base.$zoom.stop(true,true).fadeIn(o.speed);
+				if (o.overlay) { base.$overlay.addClass(n.overlay); }
+				base.$smInner.addClass(n.hovered);
+				base.$wrap.trigger('zoom', base);
+			}
 		};
 
 		base.update = function(){
@@ -137,7 +165,6 @@
 
 			base.smallDim = [ base.$smInner.width(), base.$small.height() ];
 			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;" />').prependTo(base.$small);
-
 			base.ratio = [
 				base.largeDim[0] / (base.smallDim[0] || 1),
 				base.largeDim[1] / (base.smallDim[1] || 1)
@@ -246,7 +273,6 @@
 				ex = o.edge || (o.edge === 0 ? 0 : sx2 * 0.66), // 2/3 of zoom window
 				ey = o.edge || (o.edge === 0 ? 0 : sy2 * 0.66), // allows edge to be zero
 				m = parseInt(base.$inner.css('margin-left'), 10) || base.$inner.position().left || 0;
-
 			// save new zoom size
 			base.last = [ sx, sy ];
 			// save x, y for external access
@@ -334,6 +360,7 @@
 		offsetY     : 0,          // adjust the vertical position of the large content inside the zoom window as desired
 		// functionality
 		switchEvent : 'dblclick', // event that allows toggling between small and large elements - default is double click
+		delay       : 0,          // time to delay before revealing the zoom window.
 		// edit mode
 		edit        : false       // add x,y coordinates into zoom window to make it easier to find coordinates
 	};
