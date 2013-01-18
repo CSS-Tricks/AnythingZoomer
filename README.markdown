@@ -11,6 +11,9 @@
 
 ## Changelog
 
+### Version 2.2.1 (1/18/2013)
+* New version labeled to enable updating the [jquery plugin registry](http://plugins.jquery.com/).
+
 ### Version 2.2 (10/31/2012)
 * Fixed an issue with jQuery v1.8+:
   * jQuery 1.8 changed how the [box-sizing measured the width](http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/). Which returned a width of zero for the inner zoom content.
