@@ -1,5 +1,5 @@
 /*!
-	AnythingZoomer v2.2.1
+	AnythingZoomer v2.2.2
 	Original by Chris Coyier: http://css-tricks.com
 	Get the latest version: https://github.com/CSS-Tricks/AnythingZoomer
 */
