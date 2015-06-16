@@ -122,7 +122,7 @@
 			}
 
 			base.$smInner = (base.$small.find('.' + n.smallInner).length) ?
-				base.$small.find('.' + n.smallInner) : 
+				base.$small.find('.' + n.smallInner) :
 				base.$small.wrapInner('<span class="' + n.smallInner + '"/>').find('.' + n.smallInner);
 			base.$small.find('.' + n.overly).remove();
 
@@ -318,7 +318,10 @@
 
 		base.setEnabled = function(enable){
 			base.enabled = enable;
-			if (!enable) {
+			if (enable) {
+				var off = base.$small.offset();
+				base.zoomAt( base.position.pageX - off.left, base.position.pageY - off.top, null, true );
+			} else {
 				base.showSmall();
 				base.hideZoom();
 			}
