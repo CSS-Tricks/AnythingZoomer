@@ -1,9 +1,7 @@
 ﻿$(function() {
 
 	// Syntax highlighting
-	$(".html").chili();
-	$(".css").chili();
-	$(".js").chili();
+	if (typeof prettyPrint !== 'undefined') { prettyPrint(); }
 
 	var $win = $(window),
 		$top = $('#to-top');

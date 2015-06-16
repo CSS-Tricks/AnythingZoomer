@@ -6,14 +6,14 @@
 
 	<title>Anything Zoomer | Usage</title>
 
-	<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
 	<link rel="stylesheet" href="demo/style.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="demo/page.js"></script>
 
 	<!-- Syntax highlighting -->
-	<script src="http://mottie.github.com/tablesorter/docs/js/chili/jquery.chili-2.2.js"></script>
-	<script src="http://mottie.github.com/tablesorter/docs/js/chili/recipes.js"></script>
+	<link rel="stylesheet" href="demo/prettify.css">
+	<script src="demo/prettify.js"></script>
 </head>
 
 <body id="use">
@@ -22,7 +22,7 @@
 
 	<h1 id="top">AnythingZoomer<sup>2</sup></h1>
 
-	<a href="https://github.com/CSS-Tricks/AnythingZoomer/zipball/master" id="dl">Download</a>
+	<a href="//github.com/CSS-Tricks/AnythingZoomer/zipball/master" id="dl">Download</a>
 
 	<ul id="nav">
 		<li><a href="index.html">Calendar</a></li>
@@ -31,8 +31,8 @@
 		<li><a href="text.html">Text</a></li>
 		<li><a href="double.html">Double</a></li>
 		<li><a class="current" class="use" href="use.html">Usage</a></li>
-		<li><a class="play" href="http://jsfiddle.net/Mottie/6sp2b/">Playground</a></li>
-		<li><a class="issue" href="https://github.com/CSS-Tricks/AnythingZoomer/issues">Issues</a></li>
+		<li><a class="play" href="//jsfiddle.net/Mottie/6sp2b/">Playground</a></li>
+		<li><a class="issue" href="//github.com/CSS-Tricks/AnythingZoomer/issues">Issues</a></li>
 	</ul>
 
 	<p class="sections">Sections: <a href="#basics">Basics</a> | <a href="#html">HTML</a> | <a href="#css">CSS</a> |
@@ -46,8 +46,8 @@
 		new function on the area you wish to have zooming. There is a specific HTML structure and some required CSS to have all this
 		work correctly, so read on. The full list of parameters is also below.</p>
 
-	<pre class="html">&lt;link rel="stylesheet" href="css/anythingzoomer.css"&gt;
-&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js&quot;&gt;&lt;/script&gt;
+	<pre class="prettyprint lang-html">&lt;link rel="stylesheet" href="css/anythingzoomer.css"&gt;
+&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;js/jquery.anythingzoomer.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
   $(function(){
@@ -61,7 +61,7 @@
 
 		<p>The only required HTML is the wrapper and the small area. The large area is required if you don't clone the small area.</p>
 
-	<pre><code><span class="cc c-wrap"></span>&lt;div id=&quot;zoom&quot;&gt;
+	<pre class="prettyprint lang-html"><code><span class="cc c-wrap"></span>&lt;div id=&quot;zoom&quot;&gt;
 <span class="cc c-small"></span>  &lt;div class=&quot;small&quot;&gt;
 <span class="cc c-small"></span>    &lt;img src=&quot;demo/rushmore_small.jpg&quot; alt=&quot;small rushmore&quot; /&gt;
 <span class="cc c-small"></span>  &lt;/div&gt;
@@ -84,7 +84,7 @@
 
 		<p>This is the HTML after the plugin has been applied.</p>
 
-	<pre><code><span class="cc c-wrap"></span>&lt;div id="zoom" class="az-wrap"&gt;
+	<pre class="prettyprint lang-html"><code><span class="cc c-wrap"></span>&lt;div id="zoom" class="az-wrap"&gt;
 <span class="cc c-wrap"></span>  &lt;span class="az-wrap-inner"&gt;
 
 <span class="cc c-small"></span>    &lt;div class="small az-small"&gt;
@@ -109,13 +109,13 @@
 
 		<h3>Image Demo CSS Example</h3>
 
-		<pre class="css">.zoom      { width: 500px; }
+		<pre class="prettyprint lang-css">.zoom      { width: 500px; }
 .small img { width: 250px; height: 167px; }
 .large img { width: 500px; height: 333px; background: white; }</pre>
 
 		<h3>anythingzoomer.css</h3>
 
-		<pre class="css">/* AnythingZoomer */
+		<pre class="prettyprint lang-css">/* AnythingZoomer */
 .az-wrap, .az-small, .az-large {
   position: relative;
 }
@@ -183,7 +183,7 @@
 
 		<h2 id="parameters">All Parameters</h2>
 
-		<pre class="js">$(&quot;#zoom&quot;).anythingZoomer({
+		<pre class="prettyprint lang-js">$(&quot;#zoom&quot;).anythingZoomer({
   // content areas
   smallArea   : 'small',    // class of small content area; the element with this class name must be inside of the wrapper
   largeArea   : 'large',    // class of large content area; this class must exist inside of the wrapper. When the clone option is true, it will add this automatically
@@ -314,7 +314,7 @@
 		<h3>Enable or Disable AnythingZoomer</h3>
 		<p>To enable or disable AnythingZoomer, call the plugin with the appropriate text:</p>
 
-<pre class="js">$('.zoom').anythingZoomer('disable'); // disable AnythingZoomer
+<pre class="prettyprint lang-js">$('.zoom').anythingZoomer('disable'); // disable AnythingZoomer
 $('.zoom').anythingZoomer('enable');  // enable AnythingZoomer</pre>
 
 		<p>This method is demonstrated in the <a href="double.html">Double</a> demo page. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.</p>
@@ -322,7 +322,7 @@ $('.zoom').anythingZoomer('enable');  // enable AnythingZoomer</pre>
 		<h3>Control Zoom Window Externally</h3>
 		<p>You can open the zoom window using an external link using these methods. This would be useful to highlight portions of the content in say instructions on how to use an app or name the presidents in the image demo.</p>
 
-<pre class="js">// TARGET X,Y COORDINATE
+<pre class="prettyprint lang-js">// TARGET X,Y COORDINATE
 // $('.zoom').anythingZoomer( x, y, [ w, h ] );
 // x, y = left and top coords to target (will be centered in the zoom window)
 // w, h = width and height of the zoom window, if not defined, it will default to the css definition
@@ -346,12 +346,12 @@ $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
 </pre>
 
 <h3>Image Demo Example</h3>
-<pre class="html">&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;88,51&quot;&gt;George Washington&lt;/a&gt;,
+<pre class="prettyprint lang-html">&lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;88,51&quot;&gt;George Washington&lt;/a&gt;,
 &lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;114,62&quot;&gt;Thomas Jefferson&lt;/a&gt;,
 &lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;133,80&quot;&gt;Theodore Roosevelt&lt;/a&gt; or
 &lt;a href=&quot;#&quot; class=&quot;president&quot; rel=&quot;160,78&quot;&gt;Abraham Lincoln&lt;/a&gt;</pre>
 
-<pre class="js">$('.president')
+<pre class="prettyprint lang-js">$('.president')
   // prevent the link from doing anything
   .bind('click', function(){
     return false;
@@ -374,7 +374,7 @@ $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
 
 		<h3>Callback functions</h3>
 
-<pre class="js">$('#zoom').anythingZoomer({
+<pre class="prettyprint lang-js">$('#zoom').anythingZoomer({
   // initialized occurs after AnythingZoomer has initialized
   initialized : function(e, zoomer){},
   // zoom occurs when the zoom window is visible
@@ -388,7 +388,7 @@ $('.zoom').anythingZoomer( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
 
 		<p>Bind to the AnythingZoomer's events as follows:</p>
 
-<pre class="js">
+<pre class="prettyprint lang-js">
 $('#zoom').bind('initialized', function(e, zoomer){
   // do something after AnythingZoomer has initialized
 });
@@ -407,7 +407,7 @@ $('#zoom').bind('zoom unzoom', function(e, zoomer){
 		<p>These arguments and functions are available from the callback or event methods, or from the <code>zoomer</code> data object.
 			<br>Access the AnythingZoomer object from outside of callbacks and events as follows:</p>
 
-<pre class="js">var zoomer = $('#zoom').data('zoomer');</pre>
+<pre class="prettyprint lang-js">var zoomer = $('#zoom').data('zoomer');</pre>
 
 		<div class="info">
 
