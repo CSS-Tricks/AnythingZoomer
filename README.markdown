@@ -11,6 +11,14 @@
 
 ## Changelog
 
+### Version 2.2.3 (6/16/2015)
+
+* Lens now positions properly on init in Firefox. Fixes [issue #11](https://github.com/CSS-Tricks/AnythingZoomer/issues/11).
+
+### Version 2.2.2 (1/21/2013)
+
+* Version bump for registry
+
 ### Version 2.2.1 (1/18/2013)
 * New version labeled to enable updating the [jquery plugin registry](http://plugins.jquery.com/).
 
@@ -21,7 +29,7 @@
   * See [issue #7](https://github.com/CSS-Tricks/AnythingZoomer/issues/7).
 * Added a `delay` option:
   * Setting a delay, in milliseconds, will delay the time until the zoom window opens.
-  * This is useful when a user quickly scrolls through the zoom area. 
+  * This is useful when a user quickly scrolls through the zoom area.
   * See [issue #8](https://github.com/CSS-Tricks/AnythingZoomer/issues/8) for this feature request.
 
 ### Version 2.1.1 (7/3/2012)
