@@ -11,7 +11,7 @@
     {
       "name": "Rob Garrison",
       "url": "https://github.com/Mottie",
-      "email" : "wowmotty@gmail.com"
+      "email": "wowmotty@gmail.com"
     }
   ],
   "licenses": [
@@ -20,8 +20,8 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
-  "bugs": "https://github.com/CSS-Tricks/AnythingZoomer/issues",
   "homepage": "http://css-tricks.com/3075-anythingzoomer-jquery-plugin/",
+  "bugs": "https://github.com/CSS-Tricks/AnythingZoomer/issues",
   "docs" : "http://css-tricks.github.com/AnythingZoomer/use.html",
   "demo" : "http://css-tricks.github.com/AnythingZoomer/",
   "dependencies": {
@@ -37,5 +37,29 @@
     "css/jquery.anythingzoomer.css",
     "js/jquery.anythingzoomer.js",
     "js/jquery.anythingzoomer.min.js"
-  ]
+  ],
+  "main": "js/jquery.anythingzoomer.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CSS-Tricks/AnythingZoomer.git"
+  },
+  "npmName": "anythingzoomer",
+  "npmFileMap": [
+    {
+      "basePath": "",
+      "files": [
+        "css/*",
+        "js/*"
+      ]
+    }
+  ],
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/CSS-Tricks/AnythingZoomer.git",
+    "basePath": "",
+    "files": [
+        "css/*",
+        "js/*"
+    ]
+  }
 }
