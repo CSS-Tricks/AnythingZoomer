@@ -1,3 +1,8 @@
+### Version 2.2.5 (8/26/2016)
+
+* Add UMD wrapper.
+* Add bower package.
+
 ### Version 2.2.4 (8/26/2016)
 
 * Remove ID from large clone.

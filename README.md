@@ -2,8 +2,12 @@
 
 Zoom in on images or content.
 
-[![devDependency Status][david-dev-image]][david-dev-url] [![MIT][license-image]][license-url]
+[![Bower Version][bower-image]][bower-url] [![NPM Version][npm-image]][npm-url] [![devDependency Status][david-dev-image]][david-dev-url] [![MIT][license-image]][license-url]
 
+[npm-url]: https://npmjs.org/package/anythingzoomer
+[npm-image]: https://img.shields.io/npm/v/anythingzoomer.svg
+[bower-url]: http://bower.io/search/?q=jquery.anythingzoomer
+[bower-image]: https://img.shields.io/bower/v/jquery.anythingzoomer.svg
 [david-dev-url]: https://david-dm.org/CSS-Tricks/AnythingZoomer?type=dev
 [david-dev-image]: https://img.shields.io/david/dev/CSS-Tricks/AnythingZoomer.svg
 [license-url]: https://github.com/CSS-Tricks/AnythingZoomer/blob/master/LICENSE
@@ -26,6 +30,11 @@ Zoom in on images or content.
 ## Recent Changes
 
 View the [complete change log here](change-log.md)
+
+### Version 2.2.5 (8/26/2016)
+
+* Add UMD wrapper.
+* Add bower package.
 
 ### Version 2.2.4 (8/26/2016)
 
