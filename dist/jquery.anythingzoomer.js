@@ -4,9 +4,19 @@
  MIT license
 */
 /*jshint browser:true, jquery:true */
-;(function($){
+/*global require:false, define:false, module:false */
+;(function(factory) {
+	if ( typeof define === 'function' && define.amd ) {
+		define( ['jquery'], factory );
+	} else if ( typeof module === 'object' && typeof module.exports === 'object' ) {
+		module.exports = factory(require('jquery'));
+	} else {
+		factory( jQuery );
+	}
+}(function ($) {
+
 	"use strict";
-	$.anythingZoomer = function(el, options){
+	$.anythingZoomer = function(el, options) {
 		var n, o, t, base = this;
 		base.$wrap = $(el);
 		base.wrap = el;
@@ -16,7 +26,7 @@
 
 		base.version = '2.2.4';
 
-		base.init = function(){
+		base.init = function() {
 			base.options = o = $.extend( {}, $.anythingZoomer.defaultOptions, options );
 
 			// default class names
@@ -39,14 +49,14 @@
 			base.$small.addClass(n.small);
 
 			base.$inner
-				.bind('mouseenter' + n.namespace, function(){
+				.bind('mouseenter' + n.namespace, function() {
 					if (!base.enabled) { return; }
 					base.saved = base.enabled;
 					base.hovered = true;
 					if (o.delay) {
 						clearTimeout(base.delay);
 						base.enabled = false;
-						base.delay = setTimeout(function(){
+						base.delay = setTimeout(function() {
 							base.enabled = base.saved;
 							base.position.type = 'mousemove';
 							base.$inner.trigger(base.position);
@@ -56,28 +66,28 @@
 						base.reveal();
 					}
 				})
-				.bind('mouseleave' + n.namespace, function(){
+				.bind('mouseleave' + n.namespace, function() {
 					base.hovered = false;
 					if (!base.enabled) { return; }
 					if (o.delay) {
 						clearTimeout(base.delay);
 						base.enabled = base.saved;
 					}
-					if (base.state && base.enabled){
+					if (base.state && base.enabled) {
 						// delay hiding to prevent flash if user hovers over it again
 						// i.e. moving from a link to the image
-						base.timer = setTimeout(function(){
-							if (base.$zoom.hasClass(n.windowed)){
+						base.timer = setTimeout(function() {
+							if (base.$zoom.hasClass(n.windowed)) {
 								base.hideZoom(true);
 							}
 						}, 200);
 					}
 				})
-				.bind('mousemove' + n.namespace, function(e){
+				.bind('mousemove' + n.namespace, function(e) {
 					if (!base.enabled) { return; }
 					base.position = e;
 					if (!base.hovered) { return; }
-					if (base.state && base.enabled){
+					if (base.state && base.enabled) {
 						clearTimeout(base.timer);
 						// get current offsets in case page positioning has changed
 						// Double demo: expanded text demo will offset image demo zoom window
@@ -85,10 +95,10 @@
 						base.zoomAt( e.pageX - off.left, e.pageY - off.top, null, true );
 					}
 				})
-				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function(){
+				.bind(o.switchEvent + (o.switchEvent !== '' ? n.namespace : ''), function() {
 					if (!base.enabled) { return; }
 					// toggle visible image
-					if (base.state){
+					if (base.state) {
 						base.showLarge();
 					} else {
 						base.showSmall();
@@ -98,8 +108,8 @@
 			base.showSmall();
 
 			// add events
-			$.each('initialized zoom unzoom'.split(' '), function(i,f){
-				if ($.isFunction(o[f])){
+			$.each('initialized zoom unzoom'.split(' '), function(i,f) {
+				if ($.isFunction(o[f])) {
 					base.$wrap.bind(f, o[f]);
 				}
 			});
@@ -109,9 +119,9 @@
 
 		};
 
-		base.reveal = function(){
+		base.reveal = function() {
 			base.enabled = base.saved;
-			if (base.state && base.enabled){
+			if (base.state && base.enabled) {
 				base.$zoom.stop(true,true).fadeIn(o.speed);
 				if (o.overlay) { base.$overlay.addClass(n.overlay); }
 				base.$smInner.addClass(n.hovered);
@@ -119,7 +129,7 @@
 			}
 		};
 
-		base.update = function(){
+		base.update = function() {
 
 			// make sure the large image is hidden
 			if (base.initialized) {
@@ -184,7 +194,7 @@
 		};
 
 		// Show small image - Setup
-		base.showSmall = function(){
+		base.showSmall = function() {
 			base.state = true;
 			base.$small.show();
 
@@ -204,7 +214,7 @@
 		};
 
 		// Switch small and large on double click
-		base.showLarge = function(){
+		base.showLarge = function() {
 			base.state = false;
 			base.$small.hide();
 
@@ -237,19 +247,19 @@
 
 		// 'selector', [xOffset, yOffset], [zoomW, zoomH] -> Aug 26 in calendar demo
 		// base.setTarget( '.day[rel=2009-08-26]', [0, 0], [200, 200] );
-		base.setTarget = function(tar, sec, sz){
+		base.setTarget = function(tar, sec, sz) {
 			var t, x = 0, y = 0;
 			clearTimeout(base.timer);
 
-			if (!base.$zoom.hasClass(n.windowed)){
+			if (!base.$zoom.hasClass(n.windowed)) {
 				base.showSmall();
 			}
 
 			// x, y coords
-			if ( !isNaN(tar) && !isNaN(sec) ){
+			if ( !isNaN(tar) && !isNaN(sec) ) {
 				x = parseInt(tar, 10);
 				y = parseInt(sec, 10);
-			} else if ( typeof(tar) === 'string' && $(tar).length ){
+			} else if ( typeof(tar) === 'string' && $(tar).length ) {
 				// '.selector', [xOffSet, yOffSet]
 				t = $(tar);
 				x = t.position().left + t.width()/2 + (sec ? sec[0] || 0 : 0);
@@ -271,7 +281,7 @@
 		};
 
 		// x, y, [zoomX, zoomY] - zoomX, zoomY are the dimensions of the zoom window
-		base.zoomAt = function(x, y, sz, internal){
+		base.zoomAt = function(x, y, sz, internal) {
 			var sx = (sz ? sz[0] || 0 : 0) || base.last[0],
 				sy = (sz ? sz[1] || sz[0] || 0 : 0) || base.last[1],
 				sx2 = sx / 2,
@@ -287,7 +297,7 @@
 			// show coordinates
 			if (o.edit) { base.edit.html(Math.round(x) + ', ' + Math.round(y)); }
 
-			if ( (x < -ex) || (x > base.smallDim[0] + ex) || (y < -ey) || (y > base.smallDim[1] + ey) ){
+			if ( (x < -ex) || (x > base.smallDim[0] + ex) || (y < -ey) || (y > base.smallDim[1] + ey) ) {
 				base.hideZoom(internal);
 				return;
 			} else {
@@ -311,7 +321,7 @@
 
 		};
 
-		base.hideZoom = function(internal){
+		base.hideZoom = function(internal) {
 			if (internal && base.$smInner.hasClass(n.hovered)) {
 				base.$wrap.trigger('unzoom', base);
 			}
@@ -322,7 +332,7 @@
 			base.lastKey = null;
 		};
 
-		base.setEnabled = function(enable){
+		base.setEnabled = function(enable) {
 			base.enabled = enable;
 			if (enable) {
 				var off = base.$small.offset();
@@ -375,12 +385,12 @@
 		edit        : false       // add x,y coordinates into zoom window to make it easier to find coordinates
 	};
 
-	$.fn.anythingZoomer = function(options, second, sx, sy){
-		return this.each(function(){
+	$.fn.anythingZoomer = function(options, second, sx, sy) {
+		return this.each(function() {
 			var anyZoom = $(this).data('zoomer');
 			// initialize the zoomer but prevent multiple initializations
 			if ( /object|undefined/.test( typeof options ) ) {
-				if (anyZoom){
+				if (anyZoom) {
 					anyZoom.update();
 				} else {
 					(new $.anythingZoomer(this, options));
@@ -395,8 +405,10 @@
 		});
 	};
 
-	$.fn.getAnythingZoomer = function(){
+	$.fn.getAnythingZoomer = function() {
 		return this.data('zoomer');
 	};
 
-})(jQuery);
+	return $.anythingzoomer;
+
+}));
