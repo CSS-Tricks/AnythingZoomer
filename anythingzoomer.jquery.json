@@ -11,7 +11,7 @@
     {
       "name": "Rob Garrison",
       "url": "https://github.com/Mottie",
-      "email" : "wowmotty@gmail.com"
+      "email": "wowmotty@gmail.com"
     }
   ],
   "licenses": [
@@ -22,8 +22,8 @@
   ],
   "homepage": "https://css-tricks.com/anythingzoomer-jquery-plugin/",
   "bugs": "https://github.com/CSS-Tricks/AnythingZoomer/issues",
-  "docs" : "https://css-tricks.github.io/AnythingZoomer/use.html",
-  "demo" : "https://css-tricks.github.io/AnythingZoomer/",
+  "docs": "https://css-tricks.github.io/AnythingZoomer/use.html",
+  "demo": "https://css-tricks.github.io/AnythingZoomer/",
   "dependencies": {
     "jquery": ">=1.3.2"
   },
@@ -34,8 +34,8 @@
     "zooming"
   ],
   "files": [
-    "css/jquery.anythingzoomer.css",
-    "js/jquery.anythingzoomer.js",
-    "js/jquery.anythingzoomer.min.js"
+    "dist/jquery.anythingzoomer.css",
+    "dist/jquery.anythingzoomer.js",
+    "dist/jquery.anythingzoomer.min.js"
   ]
 }

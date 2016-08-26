@@ -1,10 +1,23 @@
-#AnythingZoomer jQuery Plugin
+# AnythingZoomer jQuery Plugin
+
+Zoom in on images or content.
+
+[![devDependency Status][david-dev-image]][david-dev-url] [![MIT][license-image]][license-url]
+
+[david-dev-url]: https://david-dm.org/CSS-Tricks/AnythingZoomer?type=dev
+[david-dev-image]: https://img.shields.io/david/dev/CSS-Tricks/AnythingZoomer.svg
+[license-url]: https://github.com/CSS-Tricks/AnythingZoomer/blob/master/LICENSE
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 
 * Latest [AnythingZoomer demo](https://css-tricks.github.io/AnythingZoomer/).
 * [Documentation](https://css-tricks.github.io/AnythingZoomer/use.html).
 * [JSFiddle playground](http://jsfiddle.net/Mottie/KwvjL/).
 * [Original post](https://css-tricks.com/anythingzoomer-jquery-plugin/) at CSS-Tricks.
 * Have an issue? Submit it [here](https://github.com/CSS-Tricks/AnythingZoomer/issues).
+
+## Dependencies
+
+* jQuery v1.3.2+
 
 ## Known issues
 

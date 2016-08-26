@@ -16,7 +16,7 @@
     "jquery": ">=1.3.2"
   },
   "main": [
-    "css/jquery.anythingzoomer.css",
-    "js/jquery.anythingzoomer.js"
+    "dist/jquery.anythingzoomer.css",
+    "dist/jquery.anythingzoomer.js"
   ]
 }
