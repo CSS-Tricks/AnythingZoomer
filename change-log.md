@@ -1,7 +1,7 @@
-### Version 2.2.5 (8/26/2016)
+### Version 2.2.5 & 2.2.6 (8/26/2016)
 
 * Add UMD wrapper.
-* Add bower package.
+* Add bower package & fix name.
 
 ### Version 2.2.4 (8/26/2016)
 
