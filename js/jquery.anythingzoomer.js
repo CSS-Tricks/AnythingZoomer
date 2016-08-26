@@ -128,6 +128,7 @@
 
 			if (o.clone) {
 				t = base.$smInner.clone()
+					.removeAttr('id')
 					.removeClass(n.smallInner)
 					.addClass(n.largeInner);
 				if (base.$large.length) {
