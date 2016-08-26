@@ -38,6 +38,7 @@
 
 			base.$inner
 				.bind('mouseenter' + n.namespace, function(){
+					if (!base.enabled) { return; }
 					base.saved = base.enabled;
 					base.hovered = true;
 					if (o.delay) {
@@ -55,6 +56,7 @@
 				})
 				.bind('mouseleave' + n.namespace, function(){
 					base.hovered = false;
+					if (!base.enabled) { return; }
 					if (o.delay) {
 						clearTimeout(base.delay);
 						base.enabled = base.saved;
@@ -70,6 +72,7 @@
 					}
 				})
 				.bind('mousemove' + n.namespace, function(e){
+					if (!base.enabled) { return; }
 					base.position = e;
 					if (!base.hovered) { return; }
 					if (base.state && base.enabled){
@@ -325,6 +328,7 @@
 			} else {
 				base.showSmall();
 				base.hideZoom();
+				base.hovered = false;
 			}
 		};
 
