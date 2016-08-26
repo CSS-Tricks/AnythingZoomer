@@ -23,6 +23,12 @@ Zoom in on images or content.
 
 * jQuery v1.3.2+
 
+## Download
+
+* Get all files: [zip]() or [tar.gz]().
+* Use [bower](https://bower.io/search/?q=anythingzoomer): `bower install jquery.anythingzoomer`.
+* Use [npm](https://www.npmjs.com/package/anythingzoomer): `npm install anythingzoomer`.
+
 ## Known issues
 
 * In the [text demo](https://css-tricks.github.io/AnythingZoomer/text.html), you can resize the large area content dynamically. At 2x, the top left corner of the large content matches the top left corner of the small content. But as the size increases (up to 4x), the spacing of the content from the top left corner increases. This happens with any content. I'm still looking for a fix.
