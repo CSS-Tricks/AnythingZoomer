@@ -96,7 +96,7 @@
 			base.showSmall();
 
 			// add events
-			$.each('initialized zoomed unzoomed'.split(' '), function(i,f){
+			$.each('initialized zoom unzoom'.split(' '), function(i,f){
 				if ($.isFunction(o[f])){
 					base.$wrap.bind(f, o[f]);
 				}
