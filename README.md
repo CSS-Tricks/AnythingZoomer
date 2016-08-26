@@ -25,7 +25,7 @@ Zoom in on images or content.
 
 ## Download
 
-* Get all files: [zip]() or [tar.gz]().
+* Get all files: [zip](https://github.com/CSS-Tricks/AnythingZoomer/archive/master.zip) or [tar.gz](https://github.com/CSS-Tricks/AnythingZoomer/archive/master.tar.gz).
 * Use [bower](https://bower.io/search/?q=anythingzoomer): `bower install jquery.anythingzoomer`.
 * Use [npm](https://www.npmjs.com/package/anythingzoomer): `npm install anythingzoomer`.
 
