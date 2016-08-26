@@ -1,3 +1,19 @@
+### Version 2.2.4 (8/26/2016)
+
+* Remove ID from large clone.
+* Prevent zoom window showing on re-enable. See [issue #37](https://github.com/CSS-Tricks/AnythingZoomer/issues/37).
+* Fix callback function names ('zoom' & 'unzoom' are supported).
+* Update all documentation links to use `github.io`.
+* Add build process & dist folder.
+
+### Version 2.2.3 (6/16/2015)
+
+* Lens now positions properly on init in Firefox. Fixes [issue #11](https://github.com/CSS-Tricks/AnythingZoomer/issues/11).
+
+### Version 2.2.2 (1/21/2013)
+
+* Version bump for registry
+
 ### Version 2.2.1 (1/18/2013)
 * New version labeled to enable updating the [jquery plugin registry](http://plugins.jquery.com/).
 
