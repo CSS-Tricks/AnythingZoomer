@@ -1,24 +1,3 @@
-#AnythingZoomer jQuery Plugin
-
-* Latest [AnythingZoomer demo](http://css-tricks.github.com/AnythingZoomer/).
-* [Documentation](http://css-tricks.github.com/AnythingZoomer/use.html).
-* [Original post](http://css-tricks.com/3075-anythingzoomer-jquery-plugin/) at CSS-Tricks.
-* Have an issue? Submit it [here](https://github.com/CSS-Tricks/AnythingZoomer/issues).
-
-## Known issues
-
-* In the [text demo](http://css-tricks.github.com/AnythingZoomer/text.html), you can resize the large area content dynamically. At 2x, the top left corner of the large content matches the top left corner of the small content. But as the size increases (up to 4x), the spacing of the content from the top left corner increases. This happens with any content. I'm still looking for a fix.
-
-## Changelog
-
-### Version 2.2.3 (6/16/2015)
-
-* Lens now positions properly on init in Firefox. Fixes [issue #11](https://github.com/CSS-Tricks/AnythingZoomer/issues/11).
-
-### Version 2.2.2 (1/21/2013)
-
-* Version bump for registry
-
 ### Version 2.2.1 (1/18/2013)
 * New version labeled to enable updating the [jquery plugin registry](http://plugins.jquery.com/).
 
@@ -50,12 +29,12 @@
     $('.zoom').data('zoomer').setEnabled(true);  // enable AnythingZoomer
     ```
 
-  The [double](http://css-tricks.github.com/AnythingZoomer/double.html) demo has been updated to show this new method. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.
+  The [double](https://css-tricks.github.io/AnythingZoomer/double.html) demo has been updated to show this new method. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.
 
 ### Version 2.0 (6/11/2012)
 * AnythingZoomer can now be updated to change both the small and large content dynamically.
   * To update the content, just call anythingZoomer without any options: `$('#zoom').anythingZoomer();`.
-  * Added a [Swap image](http://css-tricks.github.com/AnythingZoomer/swap.html) demo to show this in action!
+  * Added a [Swap image](https://css-tricks.github.io/AnythingZoomer/swap.html) demo to show this in action!
 * Modified the plugin to properly position the zoom window with dynamically centered content.
   * Added a `margin: 0 auto` to `.az-wrapper-inner` to center both the small and large content.
 * A class name of `az-hovered` will be applied to the `az-small-inner` when it is hovered.
@@ -69,12 +48,12 @@
   * An overlay has been added to cover the `smallArea` content, by default it has no styling and shouldn't interfere; but if it does, add a negative z-index to the `az-overly` (no "a") class.
   * If this option is `true`, the `az-overlay` class name is applied to the overlay to darken the area below the zoom window.
   * If `false`, the default setting, the overlay will remain transparent.
-  * The [Image demo](http://css-tricks.github.com/AnythingZoomer/image.html) has been updated to demonstrate the overlay.
+  * The [Image demo](https://css-tricks.github.io/AnythingZoomer/image.html) has been updated to demonstrate the overlay.
 * Added events and callbacks:
   * `initialized` event which occurs after AnythingZoomer has finished initializing.
   * `zoom` event occurs when the zoom window is visible.
   * `unzoom` event occurs when the zoom window is hidden.
-  * Instructions on how to use the callback or events can be found in the [documentation](http://css-tricks.github.com/AnythingZoomer/use.html).
+  * Instructions on how to use the callback or events can be found in the [documentation](https://css-tricks.github.io/AnythingZoomer/use.html).
 * Added an `edit` option:
   * When true, it will add the mouse coordinates in the upper right corner of the zoom window.
   * If false, the default setting, no coordinates are shown.

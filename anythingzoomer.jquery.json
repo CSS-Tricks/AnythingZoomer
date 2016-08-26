@@ -20,10 +20,10 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
+  "homepage": "https://css-tricks.com/anythingzoomer-jquery-plugin/",
   "bugs": "https://github.com/CSS-Tricks/AnythingZoomer/issues",
-  "homepage": "http://css-tricks.com/3075-anythingzoomer-jquery-plugin/",
-  "docs" : "http://css-tricks.github.com/AnythingZoomer/use.html",
-  "demo" : "http://css-tricks.github.com/AnythingZoomer/",
+  "docs" : "https://css-tricks.github.io/AnythingZoomer/use.html",
+  "demo" : "https://css-tricks.github.io/AnythingZoomer/",
   "dependencies": {
     "jquery": ">=1.3.2"
   },

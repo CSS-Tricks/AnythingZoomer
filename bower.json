@@ -1,5 +1,17 @@
 {
   "name": "AnythingZoomer",
+  "description": "Zoom in on images or content.",
+  "keywords": [
+    "customizable",
+    "effects",
+    "elements",
+    "zooming"
+  ],
+  "homepage": "https://css-tricks.com/anythingzoomer-jquery-plugin/",
+  "authors": [
+    { "name": "Chris Coyier", "homepage": "https://github.com/chriscoyier" },
+    { "name": "Rob Garrison", "homepage": "https://github.com/Mottie", "email": "wowmotty@gmail.com" }
+  ],
   "dependencies": {
     "jquery": ">=1.3.2"
   },
