@@ -1,3 +1,11 @@
+### Version 2.2.7 (11/5/2016)
+
+* Fix misspelling. See [pull #38](https://github.com/CSS-Tricks/AnythingZoomer/pull/38); thanks [@draber](https://github.com/draber)!
+* Bower: Fix bower.json.
+* Readme:
+  * Add links to bower & npm.
+  * Add download links.
+
 ### Version 2.2.5 & 2.2.6 (8/26/2016)
 
 * Add UMD wrapper.

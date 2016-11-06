@@ -1,4 +1,4 @@
-/*! AnythingZoomer v2.2.6 *//*
+/*! AnythingZoomer v2.2.7 *//*
  by Chris Coyier (http://css-tricks.com)
  https://github.com/CSS-Tricks/AnythingZoomer
  MIT license

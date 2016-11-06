@@ -37,6 +37,14 @@ Zoom in on images or content.
 
 View the [complete change log here](change-log.md)
 
+### Version 2.2.7 (11/5/2016)
+
+* Fix misspelling. See [pull #38](https://github.com/CSS-Tricks/AnythingZoomer/pull/38); thanks [@draber](https://github.com/draber)!
+* Bower: Fix bower.json.
+* Readme:
+  * Add links to bower & npm.
+  * Add download links.
+
 ### Version 2.2.5 & 2.2.6 (8/26/2016)
 
 * Add UMD wrapper.
@@ -49,11 +57,3 @@ View the [complete change log here](change-log.md)
 * Fix callback function names ('zoom' & 'unzoom' are supported).
 * Update all documentation links to use `github.io`.
 * Add build process & dist folder.
-
-### Version 2.2.3 (6/16/2015)
-
-* Lens now positions properly on init in Firefox. Fixes [issue #11](https://github.com/CSS-Tricks/AnythingZoomer/issues/11).
-
-### Version 2.2.2 (1/21/2013)
-
-* Version bump for registry
