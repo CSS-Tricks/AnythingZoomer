@@ -2,12 +2,10 @@
 
 Zoom in on images or content.
 
-[![Bower Version][bower-image]][bower-url] [![NPM Version][npm-image]][npm-url] [![devDependency Status][david-dev-image]][david-dev-url] [![MIT][license-image]][license-url]
+[![NPM Version][npm-image]][npm-url] [![devDependency Status][david-dev-image]][david-dev-url] [![MIT][license-image]][license-url]
 
 [npm-url]: https://npmjs.org/package/anythingzoomer
 [npm-image]: https://img.shields.io/npm/v/anythingzoomer.svg
-[bower-url]: http://bower.io/search/?q=jquery.anythingzoomer
-[bower-image]: https://img.shields.io/bower/v/jquery.anythingzoomer.svg
 [david-dev-url]: https://david-dm.org/CSS-Tricks/AnythingZoomer?type=dev
 [david-dev-image]: https://img.shields.io/david/dev/CSS-Tricks/AnythingZoomer.svg
 [license-url]: https://github.com/CSS-Tricks/AnythingZoomer/blob/master/LICENSE
@@ -26,7 +24,6 @@ Zoom in on images or content.
 ## Download
 
 * Get all files: [zip](https://github.com/CSS-Tricks/AnythingZoomer/archive/master.zip) or [tar.gz](https://github.com/CSS-Tricks/AnythingZoomer/archive/master.tar.gz).
-* Use [bower](https://bower.io/search/?q=anythingzoomer): `bower install jquery.anythingzoomer`.
 * Use [npm](https://www.npmjs.com/package/anythingzoomer): `npm install anythingzoomer`.
 
 ## Known issues
