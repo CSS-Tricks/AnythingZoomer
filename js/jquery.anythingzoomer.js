@@ -28,6 +28,7 @@
 
 		base.init = function() {
 			base.options = o = $.extend( {}, $.anythingZoomer.defaultOptions, options );
+			base.position = {};
 
 			// default class names
 			n = $.anythingZoomer.classNames;
@@ -336,7 +337,10 @@
 			base.enabled = enable;
 			if (enable) {
 				var off = base.$small.offset();
-				base.zoomAt( base.position.pageX - off.left, base.position.pageY - off.top, null, true );
+				// base.position is empty if mouse was never moved over zoom container
+				if (typeof base.position.pageX !== 'undefined') {
+					base.zoomAt( base.position.pageX - off.left, base.position.pageY - off.top, null, true );
+				}
 			} else {
 				base.showSmall();
 				base.hideZoom();
