@@ -1,4 +1,4 @@
-/*! AnythingZoomer v2.2.7 *//*
+/*! AnythingZoomer v2.2.8 *//*
  by Chris Coyier (http://css-tricks.com)
  https://github.com/CSS-Tricks/AnythingZoomer
  MIT license
@@ -24,7 +24,7 @@
 		// Add a reverse reference to the DOM object
 		base.$wrap.data('zoomer', base);
 
-		base.version = '2.2.6';
+		base.version = '2.2.8';
 
 		base.init = function() {
 			base.options = o = $.extend( {}, $.anythingZoomer.defaultOptions, options );

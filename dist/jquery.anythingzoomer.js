@@ -1,4 +1,4 @@
-/*! AnythingZoomer v2.2.7 *//*
+/*! AnythingZoomer v2.2.8 *//*
  by Chris Coyier (http://css-tricks.com)
  https://github.com/CSS-Tricks/AnythingZoomer
  MIT license
@@ -24,10 +24,11 @@
 		// Add a reverse reference to the DOM object
 		base.$wrap.data('zoomer', base);
 
-		base.version = '2.2.6';
+		base.version = '2.2.8';
 
 		base.init = function() {
 			base.options = o = $.extend( {}, $.anythingZoomer.defaultOptions, options );
+			base.position = {};
 
 			// default class names
 			n = $.anythingZoomer.classNames;
@@ -123,7 +124,9 @@
 			base.enabled = base.saved;
 			if (base.state && base.enabled) {
 				base.$zoom.stop(true,true).fadeIn(o.speed);
-				if (o.overlay) { base.$overlay.addClass(n.overlay); }
+				if (o.overlay) {
+					base.$overlay.addClass(n.overlay).show();
+				}
 				base.$smInner.addClass(n.hovered);
 				base.$wrap.trigger('zoom', base);
 			}
@@ -180,13 +183,16 @@
 			base.$zoom.hide();
 
 			base.smallDim = [ base.$smInner.children().width(), base.$small.height() ];
-			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;" />').prependTo(base.$small);
+			base.$overlay = $('<div class="' + n.overly + '" style="position:absolute;left:0;top:0;right:0;botom:0;height:100%;width:100%;" />');
+			if (o.overlay) {
+				base.$overlay.prependTo(base.$small);
+			}
 			base.ratio = [
 				base.largeDim[0] / (base.smallDim[0] || 1),
 				base.largeDim[1] / (base.smallDim[1] || 1)
 			];
 
-			base.$inner.add(base.$overlay).css({
+			base.$inner.css({
 				width  : base.smallDim[0],
 				height : base.smallDim[1]
 			});
@@ -327,7 +333,7 @@
 			}
 			base.last = base.zoomDim;
 			base.$zoom.stop(true,true).fadeOut(o.speed);
-			base.$overlay.removeClass(n.overlay);
+			base.$overlay.removeClass(n.overlay).hide();
 			base.$smInner.removeClass(n.hovered);
 			base.lastKey = null;
 		};
@@ -336,7 +342,10 @@
 			base.enabled = enable;
 			if (enable) {
 				var off = base.$small.offset();
-				base.zoomAt( base.position.pageX - off.left, base.position.pageY - off.top, null, true );
+				// base.position is empty if mouse was never moved over zoom container
+				if (typeof base.position.pageX !== 'undefined') {
+					base.zoomAt( base.position.pageX - off.left, base.position.pageY - off.top, null, true );
+				}
 			} else {
 				base.showSmall();
 				base.hideZoom();

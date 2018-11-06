@@ -1,4 +1,10 @@
-### Version 2.2.7 (11/5/2016)
+### Version 2.2.8 (2018-11-06)
+
+* Fix JS error when enabled. See [issue #41](https://github.com/CSS-Tricks/AnythingZoomer/issues/41).
+* Fix overlay interference & position. See [issue #41](https://github.com/CSS-Tricks/AnythingZoomer/issues/41).
+* Readme: Remove bower.
+
+### Version 2.2.7 (2016-11-05)
 
 * Fix misspelling. See [pull #38](https://github.com/CSS-Tricks/AnythingZoomer/pull/38); thanks [@draber](https://github.com/draber)!
 * Bower: Fix bower.json.
@@ -6,12 +12,12 @@
   * Add links to bower & npm.
   * Add download links.
 
-### Version 2.2.5 & 2.2.6 (8/26/2016)
+### Version 2.2.5 & 2.2.6 (2016-08-26)
 
 * Add UMD wrapper.
 * Add bower package & fix name.
 
-### Version 2.2.4 (8/26/2016)
+### Version 2.2.4 (2016-08-26)
 
 * Remove ID from large clone.
 * Prevent zoom window showing on re-enable. See [issue #37](https://github.com/CSS-Tricks/AnythingZoomer/issues/37).
@@ -19,18 +25,18 @@
 * Update all documentation links to use `github.io`.
 * Add build process & dist folder.
 
-### Version 2.2.3 (6/16/2015)
+### Version 2.2.3 (2015-06-16)
 
 * Lens now positions properly on init in Firefox. Fixes [issue #11](https://github.com/CSS-Tricks/AnythingZoomer/issues/11).
 
-### Version 2.2.2 (1/21/2013)
+### Version 2.2.2 (2013-01-21)
 
 * Version bump for registry
 
-### Version 2.2.1 (1/18/2013)
+### Version 2.2.1 (2013-01-18)
 * New version labeled to enable updating the [jquery plugin registry](http://plugins.jquery.com/).
 
-### Version 2.2 (10/31/2012)
+### Version 2.2 (2012-10-31)
 * Fixed an issue with jQuery v1.8+:
   * jQuery 1.8 changed how the [box-sizing measured the width](http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/). Which returned a width of zero for the inner zoom content.
   * Changed the plugin to measure the width of the content children, so a zoom window should have its content wrapped or it may return an incorrect value.
@@ -40,10 +46,10 @@
   * This is useful when a user quickly scrolls through the zoom area.
   * See [issue #8](https://github.com/CSS-Tricks/AnythingZoomer/issues/8) for this feature request.
 
-### Version 2.1.1 (7/3/2012)
+### Version 2.1.1 (2012-07-03)
 * Fixed calendar demo links. The shortcut method was previously ignoring jQuery selectors: `$('#zoom').anythingZoomer('.day[rel=2009-08-26]');`.
 
-### Version 2.1 (6/21/2012)
+### Version 2.1 (2012-06-21)
 * Added a method to enable or disable AnythingZoomer.
 
     ```javascript
@@ -60,7 +66,7 @@
 
   The [double](https://css-tricks.github.io/AnythingZoomer/double.html) demo has been updated to show this new method. What isn't shown there is that when AnythingZoomer is disabled, the zoom window automatically closes and the small area content is shown.
 
-### Version 2.0 (6/11/2012)
+### Version 2.0 (2012-06-11)
 * AnythingZoomer can now be updated to change both the small and large content dynamically.
   * To update the content, just call anythingZoomer without any options: `$('#zoom').anythingZoomer();`.
   * Added a [Swap image](https://css-tricks.github.io/AnythingZoomer/swap.html) demo to show this in action!
@@ -97,11 +103,11 @@
 * Fixed an issue where moving from the AnythingZoomer window to an external link would cause a flicker.
 * Updated the documentation page with the new options and features.
 
-### Version 1.1.2 (12/9/2011)
+### Version 1.1.2 (2011-12-09)
 * Added package.json created by Richard D. Worth
 * Updated download links.
 
-### Version 1.1 (8/25/2011)
+### Version 1.1 (2011-08-25)
 * Initial commit to github.
 * Modified initial required markup
 * Removed `zoomPort` and `mover` options.
@@ -112,5 +118,5 @@
 * Added methods to open up the zoom window from an external link.
 * Added `switchEvent` option to allow changing the event that toggles between the small and large content.
 
-### Version 1.0 (7/20/2009)
+### Version 1.0 (2009-07-20)
 * Initial post on css-tricks
